@@ -1,3 +1,17 @@
+<?php
+session_start();
+include '../config.php';
+
+
+if(isset($_COOKIE['auth_token']) || $_COOKIE['auth_token']!='')
+{
+$url='../dashboard';
+echo '<script>window.location = "'.$url.'";</script>';
+exit();
+}
+$_SESSION['auth_token']='asd';
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -5,17 +19,7 @@
     <style type="text/css">
     </style>
 
-    <?php
-include '../config.php';
-session_start();
-if(isset($_SESSION['auth_token']))
-{
-$url='../home/index.php';
-echo '<script>window.location = "'.$url.'";</script>';
-exit();
-}
-?>
-
+    
 
   </head>
   <body>
@@ -157,6 +161,8 @@ include '../footer.php';
                                   , "slow");
           $('input').val("");
           location.reload();
+          // alert("<?php echo $_SESSION['auth']; ?>")
+          // window.location = "../dashboard";
         }
         else
         {
