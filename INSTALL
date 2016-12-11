@@ -1,0 +1,6 @@
+***************************************************************************************
+CREATE A database breadume
+
+Import the table files in the folder "SQL Files" to a mysql database created.
+
+Modify the credential of database in 'config.php'
