@@ -1,35 +1,10 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-		<meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-		<title>Bemat Admin v1 - Breadcrumbs</title>
-		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-
-		<!-- Bootstrap Core CSS - Include with every page -->
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-
-		<!-- Bemat Admin CSS - Include with every page -->
-		<link href="css/themes/theme-default/bemat-admin.min.css" rel="stylesheet" id="theme-switcher">
-		
-		<!-- Documentation Prettify -->
-		<link href="vendor/google-code-prettify/prettify-tomorrow.css" rel="stylesheet" />
-	</head>
-
-	<body class="container-fluid dark-sidebar dark-header-brand">
-		<div id="page-wrapper">
-			<aside id="left-content" data-toggle="open" data-default="open" data-size="">
+	<aside id="left-content" data-toggle="open" data-default="open" data-size="">
 				<header class="header-container">
 					<div class="header-wrapper">
 						<div id="header-brand">
 							<div class="logo padding-left-2">
-								<span class="logo-image">B</span>
-								<span class="logo-text">Bemat</span>
+								<span class="logo-image">108</span>
+								<span class="logo-text">Emergency Services</span>
 							</div>
 						</div>
 					</div>
@@ -43,8 +18,9 @@
 						</div>
 
 						<div id="userinfo">
-							<div class="btn-group">
-								<button type="button" class="btn btn-default-bright btn-flat dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe <i class="material-icons">arrow_drop_down</i>
+							<div class="btn-group" ng-app="dashboard" ng-controller="user">
+
+								<button type="button" class="btn btn-default-bright btn-flat dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ firstname + " " + lastname}}<i class="material-icons">arrow_drop_down</i>
 								</button>
 								<ul class="dropdown-menu">
 									<li><a href="#"><i class="material-icons">person</i>Your Profile</a></li>
@@ -329,8 +305,8 @@
 										<div class="avatar">
 											<img src="img/avatar.png" class="img-circle img-responsive" />
 										</div>
-										<div class="user">
-											<span class="username">John Doe</span>
+										<div class="user" ng-controller="user">
+											<span class="username">{{ firstname + " " + lastname}}</span>
 										</div>
 										<span class="expand-ico"><i class="material-icons">expand_more</i></span>
 									</a>
@@ -352,127 +328,13 @@
 				<section id="right-content-wrapper">
 					<section class="page-header alternative-header">
 						<ol class="breadcrumb">
-							<li>Admin</li>
+							<li>Bemat Admin</li>
 							<li>Dashboard</li>
-							<li>Components</li>
-							<li>Breadcrumbs</li>
 						</ol>
-						<div class="page-header_title">
+						<div class="page-header_title" ng-controller="user">
 							<h1>
-								Breadcrumbs
-								<span class="page-header_subtitle"></span>
+								Dashboard
+								<span class="page-header_subtitle">Welcome Back {{firstname + " " + lastname}}</span>
 							</h1>
 						</div>
 					</section>
-
-					<section class="page-content">
-						<div class="row">
-							<div class="col-lg-12">
-								<p class="lead">
-									Breadcrumbs are a great way to show hierarchy-based information for a site. In the case of blogs, breadcrumbs can show the dates of publishing, categories, or tags. They indicate the current page's location within a navigational hierarchy.
-								</p>								
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-lg-12">
-								<h2 class="text-primary">Structure</h2>
-								<p>Separators are automatically added in CSS through <code>:before</code> and <code>content.</code></p>
-							</div>
-
-							<div class="col-lg-6">
-								<h4>Examples:</h4>
-								<div class="panel panel-default">
-									<div class="panel-body">
-										<ol class="breadcrumb">
-											<li><a href="#">Admin</a></li>
-											<li><a href="#">Dashboard</a></li>
-											<li><a href="#">Components</a></li>
-											<li>Breadcrumbs</li>
-										</ol>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<h4>HTML Code:</h4>
-								<div class="panel panel-default">
-									<div class="panel-body">
-										<pre><xmp><ol class="breadcrumb">
-	<li><a href="#">Admin</a></li>
-	<li><a href="#">Dashboard</a></li>
-	<li><a href="#">Components</a></li>
-	<li>Breadcrumbs</li>
-</ol></xmp></pre>
-									</div>
-								</div>
-							</div>
-						</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-					</section><!-- /#page-content -->
-
-				</section><!-- /#right-content -->
-			</section><!-- /#right-content-wrapper -->
-
-		</div>
-
-
-		<!-- Core Scripts - Include with every page -->
-		<script src="js/jquery-1.10.2.js" type="text/javascript"></script>
-		<script src="js/jquery-ui.custom.min.js" type="text/javascript"></script>
-		<script src="js/bootstrap.min.js" type="text/javascript"></script>
-		<script src="js/modernizr-2.6.2-respond-1.1.0.min.js" type="text/javascript"></script>
-
-		<!-- Page-Level Plugin Scripts - Dashboard -->
-		<script src="vendor/google-code-prettify/prettify.js" type="text/javascript"></script>
-		<script src="vendor/perfectscrollbar/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
-		<script src="vendor/iCheck/icheck.min.js" type="text/javascript"></script>
-		<script src="vendor/bootstrap-select/bootstrap-select.min.js" type="text/javascript"></script>
-		<script src="vendor/DataTables/js/jquery.dataTables.min.js" type="text/javascript"></script>
-		<script src="vendor/DataTables/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-		<script src="vendor/DataTables/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-		<script src="vendor/fullscreen/jquery.fullscreen-min.js" type="text/javascript"></script>
-		<script src="vendor/fullcalendar/moment.min.js" type="text/javascript"></script>
-		<script src="vendor/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-		<script src="vendor/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
-		<script src="vendor/peity/jquery.peity.min.js" type="text/javascript"></script>
-		<script src="vendor/chartist/chartist.min.js" type="text/javascript"></script>
-		<script src="vendor/summernote/summernote.min.js" type="text/javascript"></script>
-		<script src="vendor/ckeditor/ckeditor.js" type="text/javascript"></script>
-		<script src="vendor/wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
-
-		<!-- Cerocreativo Plugins -->
-		<script src="vendor/materialRipple/jquery.materialRipple.js" type="text/javascript"></script>
-		<script src="vendor/snackbar/jquery.snackbar.js" type="text/javascript"></script>
-		<script src="vendor/toasts/jquery.toasts.js" type="text/javascript"></script>
-		<script src="vendor/speedDial/jquery.speedDial.js" type="text/javascript"></script>
-		<script src="vendor/circularProgress/jquery.circularProgress.js" type="text/javascript"></script>
-		<script src="vendor/linearProgress/jquery.linearProgress.js" type="text/javascript"></script>
-		<script src="vendor/subheader/jquery.subheader.js" type="text/javascript"></script>
-		<script src="vendor/simplePieChart/jquery.simplePieChart.js" type="text/javascript"></script>
-
-		<!-- Bemat Admin Scripts - Included with every page -->		
-		<script src="js/bemat-admin-common.min.js"></script>
-		<script src="js/bemat-admin-demo.min.js"></script>
-<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-72024640-1', 'auto');ga('send', 'pageview');</script> 
-
-	</body>
-</html>
