@@ -26,7 +26,18 @@
 		<link href="vendor/nvd3/nv.d3.css" rel="stylesheet">
 		<link href="css/themes/theme-default/main.css" rel="stylesheet">
 		<script src='vendor/nvd3/examples/cumulativeLine.js' type='text/javascript'> </script>
+		<script type="text/javascript">
+			document.addEventListener('DOMContentLoaded', function () {
+  if (!Notification) {
+    alert('Desktop notifications not available in your browser. Try Chromium.'); 
+    return;
+  }
 
+  if (Notification.permission !== "granted")
+    Notification.requestPermission();
+});
+
+		</script>
 	</head>
 
 	<body class="dark-sidebar dark-header-brand container-fluid" ng-app="dashboard">
@@ -46,7 +57,7 @@
 									<div class="panel-body no-padding">
 										<div class="mini-card mini-card-primary">
 											<div class="mini-card-left">
-												<span>Today Sales</span>
+												<span>Today Emergencies</span>
 												<h2>1,541</h2>
 											</div>
 											<div class="mini-card-right">
@@ -64,8 +75,8 @@
 									<div class="panel-body no-padding">
 										<div class="mini-card mini-card-success">
 											<div class="mini-card-left">
-												<span>Today Earnings</span>
-												<h2>$801,124</h2>
+												<span>Cases attended</span>
+												<h2>25</h2>
 											</div>
 											<div class="mini-card-right">
 												<div class="bemat-mini-chart bemat-mini-chart-success">
@@ -82,7 +93,7 @@
 									<div class="panel-body no-padding">
 										<div class="mini-card mini-card-info">
 											<div class="mini-card-left">
-												<span>Today Orders</span>
+												<span>Average Emergencies</span>
 												<h2>2,457</h2>
 											</div>
 											<div class="mini-card-right">
@@ -100,7 +111,7 @@
 									<div class="panel-body no-padding">
 										<div class="mini-card mini-card-danger">
 											<div class="mini-card-left">
-												<span>Average time</span>
+												<span>Average response time</span>
 												<h2>43 sec.</h2>
 											</div>
 											<div class="mini-card-right">
@@ -120,26 +131,26 @@
 								<div class="panel panel-default">
 									<div class="panel-heading">
 										<header>
-											Live Statistics
+											Emergency Statistics
 											<span class="label label-primary pull-right">1024 users online</span>
 										</header>
 
 										
 									</div>
 									<div class="panel-body">
-										<div class="statistics">
+										<div class="statistics" ng-controller="emergency">
 											<div class="row">
 												<div class="col-lg-4">
 													<div class="row">
 														<div class="col-lg-12">
 															<div class="stat-wrapper">
-																<h4 class="no-margin-top margin-bottom-2">Total Visits: <span class="pull-right">18,547</span></h4>
+																<h4 class="no-margin-top margin-bottom-2">Total Emergencies: <span class="pull-right">18,547</span></h4>
 																<div class="linear-progress-demo " data-toggle="linear-progress" data-mode="determinate" data-type="primary" data-value="30"></div>
 															</div>
 														</div>
 														<div class="col-lg-12">
 															<div class="stat-wrapper margin-vertical-4">
-																<h4 class="no-margin-top margin-bottom-2">Pageviews: <span class="pull-right">108,421</span></h4>
+																<h4 class="no-margin-top margin-bottom-2">Present Emergencies: <span class="pull-right">{{ tcount }}</span></h4>
 																<div class="linear-progress-demo " data-toggle="linear-progress" data-mode="indeterminate" data-type="primary" data-value="57"></div>
 															</div>
 														</div>
@@ -154,14 +165,23 @@
 												<div class="col-lg-8">
 													<div class="row">
 														<div class="col-lg-12">
-															<div id="map" style="width:100%;height:300px;"></div>
+														<div class="maplayerw" style="width:100%;height:100%">
+														<p style="text-align: center;">Loading Emergencies...</p>
+																	<img class="imgfade" src="img/plus-l.png">
+																</div>
+															<div id="map" style="width:100%;height:300px;">
+																
+
+																
+															</div>
     															<script>
+    															var emermap;
       																function initMap() {
         															// Create a map object and specify the DOM element for display.
-        															var emermap = new google.maps.Map(document.getElementById('map'), {
-          															center: {lat: -34.397, lng: 150.644},
+        															emermap = new google.maps.Map(document.getElementById('map'), {
+          															center: {lat: 13.097, lng: 80.044},
           															scrollwheel: false,
-          															zoom: 8
+          															zoom: 9
         															});
       																}
 

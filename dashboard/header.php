@@ -3,8 +3,8 @@
 					<div class="header-wrapper">
 						<div id="header-brand">
 							<div class="logo padding-left-2">
-								<span class="logo-image">108</span>
-								<span class="logo-text">Emergency Services</span>
+								<span class="logo-image">NPI</span>
+								<span class="logo-text">NP_Incomplete</span>
 							</div>
 						</div>
 					</div>
@@ -12,26 +12,12 @@
 				<div id="sidebar-wrapper">
 					<div id="userbox">
 						<div id="useravatar">
-							<div class="avatar-thumbnail">
-								<img src="img/avatar.png" class="img-circle"/>
+							<div class="avatar-thumbnail" style="text-align:center">
+								<img src="img/108logo.png" class="img-circle" style="max-height:100px !important;max-width:100px !important" />
 							</div>
 						</div>
 
-						<div id="userinfo">
-							<div class="btn-group" ng-app="dashboard" ng-controller="user">
-
-								<button type="button" class="btn btn-default-bright btn-flat dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ firstname + " " + lastname}}<i class="material-icons">arrow_drop_down</i>
-								</button>
-								<ul class="dropdown-menu">
-									<li><a href="#"><i class="material-icons">person</i>Your Profile</a></li>
-									<li><a href="#"><i class="material-icons">settings</i>Settings</a></li>
-									<li class="divider"></li>
-									<li><a href="#"><i class="material-icons">lock</i> Lock</a></li>
-									<li class="divider"></li>
-									<li><a href="#"><i class="material-icons">exit_to_app</i> Log Out</a></li>
-								</ul>
-							</div>
-						</div>
+						
 					</div> <!-- END: #userbox -->
 
 
@@ -44,118 +30,65 @@
 								</a>
 							</li>
 							<li>
+								<a href="notifications.php">
+									<span class="menu-item-ico"><i class="material-icons">error</i></span>
+									<span class="menu-item-name">Notifications</span>
+									<span class="badge badge-info">9</span>
+								</a>
+							</li>
+							<li>
 								<a href="">
-									<span class="menu-item-ico"><i class="material-icons">extension</i></span>
-									<span class="menu-item-name">Components</span>
+									<span class="menu-item-ico"><i class="material-icons">favorite</i></span>
+									<span class="menu-item-name">Medical</span>
+									<span class="badge badge-danger">3</span>
 								</a>
 								<ul>
-									<li><a href="page-accordions.html">Accordions</a></li>
-									<li><a href="page-alerts.html">Alerts</a></li>
-									<li><a href="page-badges.html">Badges & Labels</a></li>
-									<li><a href="page-boxshadow.html">Box Shadow</a></li>
-									<li>
-										<a href="">Buttons <span class="badge badge-success">3</span></a>
-										<ul>
-											<li><a href="page-buttons-types.html">Button Types</a></li>
-											<li><a href="page-buttons-FAB-speed-dial.html">FAB Speed Dial <span class="badge badge-default-dark"><i class="material-icons md-18">star</i></span></a></li>
-											<li><a href="page-buttons-ink-ripple.html">Material Ink Ripple <span class="badge badge-default-dark"><i class="material-icons md-18">star</i></span></a></li>
-										</ul>
-									</li>
-									<li><a href="page-breadcrumbs.html">Breadcrumbs</a></li>
-									<li>
-										<a href="">Colors <span class="badge badge-primary">2</span></a>
-										<ul>
-											<li><a href="page-colors-bemat-admin.html">Bemat Colors</a></li>
-											<li><a href="page-colors-material-design.html">Material Design Colors</a></li>
-										</ul>
-									</li>
-									<li><a href="page-dropdowns.html">Dropdowns</a></li>
-									<li><a href="page-grid.html">Grid</a></li>
-									<li>
-										<a href="">Icons <span class="badge badge-info">2</span></a>
-										<ul>
-											<li><a href="page-icons-materialdesign.html">Material Design Icons</a></li>
-											<li><a href="page-icons-fontawesome.html">Font Awesome</a></li>
-										</ul>
-									</li>
-									<li>
-										<a href="">Lists <span class="badge badge-warning">2</span></a>
-										<ul>
-											<li><a href="page-lists.html">Normal Lists</a></li>
-											<li><a href="page-lists-subheader.html">Subheader Sticky <span class="badge badge-default-dark"><i class="material-icons md-18">star</i></span></a></li>
-										</ul>
-									</li>
-									<li><a href="page-modals.html">Modals</a></li>
-									<li><a href="page-multilevelsmenu.html">Multi Levels Side Menu</a></li>
-									<li>
-										<a href="">Notifications <span class="badge badge-warning">2</span></a>
-										<ul>
-											<li><a href="page-notifications-snackbar.html">Snackbars <span class="badge badge-default-dark"><i class="material-icons md-18">star</i></span></a></li>
-											<li><a href="page-notifications-toasts.html">Toasts <span class="badge badge-default-dark"><i class="material-icons md-18">star</i></span></a></li>
-										</ul>
-									</li>
-									<li>
-										<a href="">Pagination <span class="badge badge-danger">2</span></a>
-										<ul>
-											<li><a href="page-pagination.html">Pagination</a></li>
-											<li><a href="page-pager.html">Pager</a></li>
-										</ul>
-									</li>
-									<li><a href="page-panels.html">Panels</a></li>
-									<li>
-										<a href="">Progress Indicators <span class="badge badge-success">3</span></a>
-										<ul>
-											<li><a href="page-progress-circular.html">Circular <span class="badge badge-default-dark"><i class="material-icons md-18">star</i></span></a></li>
-											<li><a href="page-progress-linear.html">Linear <span class="badge badge-default-dark"><i class="material-icons md-18">star</i></span></a></li>
-											<li><a href="page-progress-progressbar.html">Bootstrap Progressbar</a></li>
-										</ul>
-									</li>
-									<li>
-										<a href="">Tables <span class="badge badge-info">3</span></a>
-										<ul>
-											<li><a href="page-tables-static.html">Static Tables</a></li>
-											<li><a href="page-tables-dynamic.html">Dynamic Tables</a></li>
-											<li><a href="page-tables-responsive.html">Responsive Tables</a></li>
-										</ul>
-									</li>
-									<li><a href="page-tabs.html">Tabs</a></li>
-									<li><a href="page-tooltips.html">Tooltips</a></li>
-									<li><a href="page-typography.html">Typography</a></li>
+									<li><a href="page-accordions.html">Other Centres</a></li>
+									<li><a href="">Ambulance Monitor</a>
+									<ul>
+									<li><a href="page-accordions.html">View Status</a></li>
+									<li><a href="page-alerts.html">Add Ambulance</a></li>									
+									<li><a href="page-boxshadow.html">Search/Edit Ambulance</a></li>
+									</ul></li>
+									<li><a href="page-boxshadow.html">Notifications</a></li>
 								</ul>
 							</li>
 							<li>
 								<a href="">
-									<span class="menu-item-ico"><i class="material-icons">format_align_left</i></span>
-									<span class="menu-item-name">Forms</span>
+									<span class="menu-item-ico"><i class="material-icons">stars</i></span>
+									<span class="menu-item-name">Police</span>
+									<span class="badge badge-danger">3</span>
 								</a>
 								<ul>
-									<li><a href="page-forms-basic.html">Form Elements Basic</a></li>
-									<li>
-										<a href="">Editors <span class="badge badge-primary">3</span></a>
-										<ul>
-											<li><a href="page-editors-summernote.html">Summernote Editor</a></li>
-											<li><a href="page-editors-ckeditor.html">CKEditor</a></li>
-											<li><a href="page-editors-wysihtml5.html">wysihtml5</a></li>
-										</ul>
-									</li>
+									<li><a href="page-accordions.html">Other Centres</a></li>
+									<li><a href="">Police Vehicle Monitor</a>
+									<ul>
+									<li><a href="page-accordions.html">View Status</a></li>
+									<li><a href="page-alerts.html">Add Vehicle</a></li>									
+									<li><a href="page-boxshadow.html">Search/Edit Vehicle</a></li>
+									</ul></li>
+									<li><a href="page-boxshadow.html">Notifications</a></li>
 								</ul>
 							</li>
 							<li>
 								<a href="">
-									<span class="menu-item-ico"><i class="material-icons">view_compact</i></span>
-									<span class="menu-item-name">Layouts</span>
+									<span class="menu-item-ico"><i class="material-icons">change_history</i></span>
+									<span class="menu-item-name">Fire</span>
+									<span class="badge badge-danger">3</span>
 								</a>
 								<ul>
-									<li><a href="layouts-dark-header-brand.html">Dark Header Brand</a></li>
-									<li><a href="layouts-dark-header-toolbar.html">Dark Header Toolbar</a></li>
-									<li><a href="layouts-dark-header-full.html">Dark Header Full</a></li>
-									<li><a href="layouts-dark-sidebar.html">Dark Sidebar</a></li>
-									<li><a href="layouts-collapsed-sidebar.html">Collapsed Sidebar</a></li>
-									<li><a href="layouts-alternative-page-header.html">Alternative Page Header</a></li>
+									<li><a href="page-accordions.html">Other Centres</a></li>
+									<li><a href="">Fire Vehicle Monitor</a>
+									<ul>
+									<li><a href="page-accordions.html">View Status</a></li>
+									<li><a href="page-alerts.html">Add Vehicle</a></li>									
+									<li><a href="page-boxshadow.html">Search/Edit Vehicle</a></li>
+									</ul></li>
+									<li><a href="page-boxshadow.html">Notifications</a></li>
 								</ul>
 							</li>
 							<li class="nav-main-heading">
-								<span class="sidebar-mini-hide">Premade Pages & Apps</span>
+								<span class="sidebar-mini-hide">User Profile and Settings</span>
 							</li>
 							<li>
 								<a href="">
@@ -325,15 +258,15 @@
 						</div>
 					</div><!-- /#header-toolbar -->
 				</header>
-				<section id="right-content-wrapper">
+				<section id="right-content-wrapper" ng-controller="user">
 					<section class="page-header alternative-header">
 						<ol class="breadcrumb">
-							<li>Bemat Admin</li>
-							<li>Dashboard</li>
+							<li>108 Emergencies</li>
+							<li ng-repeat="x in pages">{{x}}</li>
 						</ol>
-						<div class="page-header_title" ng-controller="user">
+						<div class="page-header_title" >
 							<h1>
-								Dashboard
+								{{pages[pages.length-1]}}
 								<span class="page-header_subtitle">Welcome Back {{firstname + " " + lastname}}</span>
 							</h1>
 						</div>
