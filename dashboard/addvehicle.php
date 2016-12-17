@@ -36,7 +36,7 @@ $_GET['type']=0;
 		</script>
 	</head>
 
-	<body class="container-fluid dark-sidebar dark-header-brand" ng-app="ambulances" ng-init="count=1">
+	<body class="container-fluid dark-sidebar dark-header-brand" ng-app="centres" ng-init="count=1">
 	<div class="loader fade" ng-show="showLoader">
 		<div class="pulse">
 		</div>
@@ -46,52 +46,36 @@ $_GET['type']=0;
 
 					<section class="page-content" ng-controller="records">
 
-							<div class="row">
-							<div class="col-sm-12">
-							<div class="panel panel-default">
-									<div class="panel-body">
-									<label>Search:<input  class="form-control input-sm" ng-model="query" id="query" placeholder=""></label>
-									
-									</div>
-									</div>
 							
-							</div>
-							</div>
 
 
 						  <div class="row">
 							<div class="col-lg-12">
 								<div class="panel panel-default">
 									<div class="panel-body">
-										<div class="panel-table-inner-offset">
-											<table id="table1" class="table table-condensed" data-row-select="false">
-												<thead>
-													<tr>
-														<th style="cursor:pointer" class="text-right">#</th>
-														<th style="cursor:pointer" class="text-right" ng-click="orderByField='vehicle_no'; reverseSort = !reverseSort">Vehicle No.</th>
-														<th style="cursor:pointer" class="text-right" ng-click="orderByField='driver'; reverseSort = !reverseSort">Driver</th>
-														<th style="cursor:pointer" class="text-right" ng-click="orderByField='phone'; reverseSort = !reverseSort">Phone</th>
-														<th style="cursor:pointer" class="text-right" >Location</th>
-														<th style="cursor:pointer" class="text-right" ng-click="orderByField='status'; reverseSort = !reverseSort">Status</th>									
-														<th style="cursor:pointer" class="text-right" ng-click="orderByField='handle'; reverseSort = !reverseSort">Emergency Handled</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr class="text-right" ng-repeat="(key,value) in list | filter:query | orderBy:orderByField:reverseSort" >
-														<td>{{ $index + 1 }}</td>
-														<td>{{ value.vehicle_no }}</td>
-														<td>{{ value.driver }}</td>
-														<td>{{ value.phone }}</td>
-														<td><a href="https://google.co.in/maps/@{{value.lat}},{{value.long}},17.33z" target="_blank">
-															Location
-														</a></td>
-														<td>{{value.status}}</td>														
-														<td>{{value.handle}}</td>
-													</tr>
-													
-												</tbody>
-											</table>
-										</div>
+										
+											<form class="form" role="form">
+
+												<div class="form-group floating-label">
+												<input type="text" class="form-control" id="vno">
+												<label for="regular2">Vehicle Number</label>
+												</div>
+
+												<div class="form-group floating-label">
+												<input type="text" class="form-control" id="driver">
+												<label for="regular2">Driver Name</label>
+												</div>
+
+												<div class="form-group floating-label">
+												<input type="text" class="form-control" id="phone">
+												<label for="regular2">Phone Number</label>
+												</div><br>
+												
+												<center><p><button type="button" class="btn btn-flat btn-primary">Add Ambulance</button></p></center>
+
+
+											</form>
+										
 									</div>
 								</div>
 
@@ -185,6 +169,6 @@ $_GET['type']=0;
 		<script src="js/bemat-admin-demo.min.js"></script>
 <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-72024640-1', 'auto');ga('send', 'pageview');</script> 
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-		<script type="text/javascript" src="js/ambulance.js"></script>
+		<script type="text/javascript" src="js/centres.js"></script>
 	</body>
 </html>

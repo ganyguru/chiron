@@ -21,8 +21,14 @@
 					</div> <!-- END: #userbox -->
 
 
-					<nav id="sidebar">
+					<nav id="sidebar" ng-controller="user" ng-init="getNotificationCount()">
 						<ul>
+							<li class="red-500-background-color">
+								<a href="index.html">
+									<span class="menu-item-ico"><i class="material-icons">call</i></span>
+									<span class="menu-item-name">Place Emergency</span>
+								</a>
+							</li>
 							<li>
 								<a href="index.html">
 									<span class="menu-item-ico"><i class="material-icons">dashboard</i></span>
@@ -33,58 +39,58 @@
 								<a href="notifications.php">
 									<span class="menu-item-ico"><i class="material-icons">error</i></span>
 									<span class="menu-item-name">Notifications</span>
-									<span class="badge badge-info">9</span>
+									<span class="badge badge-info">{{notificationCount[0]+notificationCount[1]+notificationCount[2]}}</span>
 								</a>
 							</li>
 							<li>
 								<a href="">
 									<span class="menu-item-ico"><i class="material-icons">favorite</i></span>
 									<span class="menu-item-name">Medical</span>
-									<span class="badge badge-danger">3</span>
+									<span class="badge badge-danger">{{notificationCount[0]}}</span>
 								</a>
 								<ul>
 									<li><a href="centres.php?type=1">Other Centres</a></li>
-									<li><a href="">Ambulance Monitor</a>
+									<li><a href="">Vehicle Monitor</a>
 									<ul>
-									<li><a href="ambulance.php?type=1">View Status</a></li>
-									<li><a href="page-alerts.html">Add Ambulance</a></li>									
-									<li><a href="page-boxshadow.html">Search/Edit Ambulance</a></li>
+									<li><a href="vehicle.php?type=1">View Status</a></li>
+									<li><a href="addvehicle.php?type=1">Add Vehicle</a></li>									
+									
 									</ul></li>
-									<li><a href="page-boxshadow.html">Notifications</a></li>
+									<li><a href="notifications.php?type=1">Notifications</a></li>
 								</ul>
 							</li>
 							<li>
 								<a href="">
 									<span class="menu-item-ico"><i class="material-icons">stars</i></span>
 									<span class="menu-item-name">Police</span>
-									<span class="badge badge-danger">3</span>
+									<span class="badge badge-danger">{{notificationCount[1]}}</span>
 								</a>
 								<ul>
 									<li><a href="centres.php?type=2">Other Centres</a></li>
-									<li><a href="">Police Vehicle Monitor</a>
+									<li><a href="">Vehicle Monitor</a>
 									<ul>
-									<li><a href="ambulance.php?type=2">View Status</a></li>
-									<li><a href="page-alerts.html">Add Vehicle</a></li>									
-									<li><a href="page-boxshadow.html">Search/Edit Vehicle</a></li>
+									<li><a href="vehicle.php?type=2">View Status</a></li>
+									<li><a href="addvehicle.php?type=2">Add Vehicle</a></li>									
+									
 									</ul></li>
-									<li><a href="page-boxshadow.html">Notifications</a></li>
+									<li><a href="notifications.php?type=2">Notifications</a></li>
 								</ul>
 							</li>
 							<li>
 								<a href="">
 									<span class="menu-item-ico"><i class="material-icons">change_history</i></span>
 									<span class="menu-item-name">Fire</span>
-									<span class="badge badge-danger">3</span>
+									<span class="badge badge-danger">{{notificationCount[2]}}</span>
 								</a>
 								<ul>
 									<li><a href="centres.php?type=3">Other Centres</a></li>
-									<li><a href="">Fire Vehicle Monitor</a>
+									<li><a href="">Vehicle Monitor</a>
 									<ul>
-									<li><a href="ambulance.php?type=3">View Status</a></li>
-									<li><a href="page-alerts.html">Add Vehicle</a></li>									
-									<li><a href="page-boxshadow.html">Search/Edit Vehicle</a></li>
+									<li><a href="vehicle.php?type=3">View Status</a></li>
+									<li><a href="addvehicle.php?type=3">Add Vehicle</a></li>									
+									
 									</ul></li>
-									<li><a href="page-boxshadow.html">Notifications</a></li>
+									<li><a href="notifications.php?type=3">Notifications</a></li>
 								</ul>
 							</li>
 							<li class="nav-main-heading">
@@ -92,124 +98,12 @@
 							</li>
 							<li>
 								<a href="">
-									<span class="menu-item-ico"><i class="material-icons">insert_drive_file</i></span>
-									<span class="menu-item-name">Pages</span>
-								</a>
-								<ul>
-									<li>
-										<a href="#">Authentication <span class="badge badge-default">4</span></a>
-										<ul>
-											<li><a href="page-authentication-forgot-password.html">Forgot Password</a></li>
-											<li><a href="page-authentication-login.html">Login Page</a></li>
-											<li><a href="page-authentication-lock.html">Lock Page</a></li>
-											<li><a href="page-authentication-register.html">Register</a></li>
-										</ul>
-									</li>
-									<li><a href="page-blank.html">Blank Page</a></li>
-									<li><a href="page-helpfaq.html">Help & FAQ</a></li>
-									<li><a href="page-invoice.html">Invoice</a></li>
-									<li><a href="page-maintenance.html">Maintenance</a></li>
-									<li><a href="page-pricing.html">Pricing Tables</a></li>
-									<li><a href="page-settings.html">Settings</a></li>
-									<li>
-										<a href="">Errors</a>
-										<ul>
-											<li><a href="page-error-404.html">Error 404</a></li>
-											<li><a href="page-error-500.html">Error 500</a></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-							<li>
-								<a href="page-calendar.html" class="btn-ripple">
-									<span class="menu-item-ico"><i class="material-icons">event</i></span>
-									<span class="menu-item-name">Calendar</span>
+									<span class="menu-item-ico"><i class="material-icons">lightbulb_outline</i></span>
+									<span class="menu-item-name">Help/FAQ</span>
+									
 								</a>
 							</li>
-							<li>
-								<a href="page-charts.html" class="btn-ripple">
-									<span class="menu-item-ico"><i class="material-icons">insert_chart</i></span>
-									<span class="menu-item-name">Charts</span>
-								</a>
-								<ul>
-									<li><a href="page-charts-sparklines.html">Sparklines</a></li>
-									<li><a href="page-charts-peity.html">Peity</a></li>
-									<li><a href="page-charts-simplePieCharts.html">Simple Pie Charts</a></li>
-									<li><a href="page-charts-chartist.html">Chartist.js</a></li>
-									<li><a href="page-charts-nvd3.html">NVD3</a></li>
-								</ul>
-							</li>
-							<li class="nav-main-heading">
-								<span class="sidebar-mini-hide">Multi Level Menu</span>
-							</li>
-							<li>
-								<a href="#" class="btn-ripple">
-									<span class="menu-item-ico"><i class="fa fa-file-pdf-o"></i></span>
-									<span class="menu-item-parent">Parent Item</span>
-									<span class="label label-primary">8</span>
-								</a>
-								<ul>
-									<li>
-										<a href="#">Subitem 1</a>
-										<ul>
-											<li><a href="#">Level 2-1</a></li>
-											<li><a href="#">Level 2-2</a></li>
-											<li>
-												<a href="#">Level 2-3</a>
-												<ul>
-													<li><a href="#">Level 3-1</a></li>
-													<li>
-														<a href="#">Level 3-2</a>
-														<ul>
-															<li><a href="#">Level 4-1</a></li>
-															<li><a href="#">Level 4-2</a></li>
-															<li>
-																<a href="#">Level 4-3</a>
-																<ul>
-																	<li><a href="#">Level 5-1</a></li>
-																	<li>
-																		<a href="#">Level 5-2</a>
-																		<ul>
-																			<li><a href="#">Level 6-1</a></li>
-																			<li><a href="#">Level 6-2</a></li>
-																			<li><a href="#">Level 6-3</a></li>
-																			<li><a href="#">Level 6-4</a></li>
-																			<li><a href="#">Level 6-5</a></li>
-																			<li><a href="#">Level 6-6</a></li>
-																			<li>
-																				<a href="#">Level 6-7</a>
-																				<ul>
-																					<li><a href="#">Level 7-1</a></li>
-																					<li>
-																						<a href="#">Level 7-2</a>
-																						<ul>
-																							<li><a href="#">Level 8-1</a></li>
-																							<li><a href="#">Level 8-2</a></li>
-																						</ul>
-																					</li>
-																				</ul>
-																			</li>
-																		</ul>
-																	</li>
-																	<li><a href="#">Level 5-3</a></li>
-																	<li><a href="#">Level 5-4</a></li>
-																	<li><a href="#">Level 5-5</a></li>
-																</ul>
-															</li>
-														</ul>
-													</li>
-													<li><a href="#">Level 3-3</a></li>
-												</ul>
-											</li>
-											<li><a href="#">Level 2-4</a></li>
-										</ul>
-									</li>
-									<li><a href="#">Subitem 2</a></li>
-									<li><a href="#">Subitem 3</a></li>
-								</ul>
-							</li>
-
-						</ul>
+							
 					</nav><!-- END: nav#sidebar -->	
 				</div>
 			</aside>

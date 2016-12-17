@@ -504,6 +504,8 @@
 		</script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 		<script type="text/javascript" src="js/dashboard.js"></script>
-		
+		<script type="text/javascript">
+			
+		</script>
 	</body>
 </html>

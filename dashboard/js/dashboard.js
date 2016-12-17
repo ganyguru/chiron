@@ -1,6 +1,7 @@
 var sock = null;
-var wsuri = "ws://4e16c88d.ngrok.io/admin/notif";
+var wsuri = "ws://4e16c88d.ngrok.io/admin/notification";
 var emergency_count=0;
+
 window.onload = function() {
 console.log("onload");
 
@@ -16,20 +17,20 @@ console.log("onload");
 
             sock.onmessage = function(e) {
 
-                var json = JSON.parse(e.data);
-                for(i=0;i<json.length;i++)
-                {
-                	placeEmergencyMarkers(emermap,parseFloat(json[i].Lat),parseFloat(json[i].Long));
-                }
+                console.log(e.data);
+       //          for(i=0;i<json.length;i++)
+       //          {
+       //          	placeEmergencyMarkers(emermap,parseFloat(json[i].Lat),parseFloat(json[i].Long));
+       //          }
 
-                var appElement = document.querySelector('[ng-controller=emergency]');
-    			var $scope = angular.element(appElement).scope();
-    			$scope.$apply(function() {
-        		$scope.tcount = i;
-    				});
+       //          var appElement = document.querySelector('[ng-controller=emergency]');
+    			// var $scope = angular.element(appElement).scope();
+    			// $scope.$apply(function() {
+       //  		$scope.tcount = i;
+    			// 	});
 
-                $(".maplayerw").fadeOut();
-                //console.log("hi");
+       //          $(".maplayerw").fadeOut();
+       //          //console.log("hi");
 
             }
         };
@@ -49,11 +50,37 @@ app.controller("emergency", function($scope) {
         $scope.tcount = "N/A";
     };
 });
-app.controller("user", function($scope) {
-	 // $http.get("welcome.htm")
-  //   .then(function(response) {
-  //       $scope.myWelcome = response.data;
-  //   });
+app.controller("user", function($scope,$http) {
+	
+	 $scope.notificationCount=[0,0,0];
+  $scope.getNotificationCount = function () {
+      
+        $http.get("http://localhost/108/pAPIs/notification.php?user=3")
+        .then(function(response) {
+        json=response.data;
+        
+        var med=0;
+        var pol=0;
+        var fire=0;
+         for(i=0;i<json.length;i++)
+        {     
+          if(json[i].type=='1')
+          med++;
+          else if(json[i].type=='2')
+          pol++;
+          else if(json[i].type=='3')
+          fire++;    
+          //console.log("gol");
+          //console.log(json[i].type);
+          //notificationCount[parseInt(json[i].type,10)-1]++;               
+        }
+        
+        $scope.notificationCount[0]=med;
+        $scope.notificationCount[1]=pol;
+        $scope.notificationCount[2]=fire;
+        //console.log(notificationCount);
+        });
+};
   $scope.showLoader = true;
   $scope.pages=['Dashboard'];
   
@@ -65,13 +92,58 @@ app.controller("user", function($scope) {
         $scope.firstname = 'Ganesh';
         $scope.lastname = 'Raghavendran';
         $scope.showLoader = false;
+
     };
 
      $scope.openPage = function (pageName) {
       window.location = '#/' + pageName;
       window.location.reload();
+
   };
+
 });
+
+// var allNotif=[];
+// app.controller("cNotification", function($scope,$http) {
+// 	var noMatch =true;
+//   $scope.notificationCount=[0,0,0];
+//   $scope.list = [];
+//   $http.get("http://localhost/108/pAPIs/notification.php?user=3")
+//     .then(function(response) {
+//     	json=response.data;
+        
+        
+//          for(i=0;i<json.length;i++)
+//         {
+//           for (var index = 0; index < allNotif.length; ++index)
+//           {
+// 			 	var item = allNotif[index];
+// 			 	if(item.id == json[i].id){
+//    					noMatch = false;
+//    				break;
+//  		  }}
+//         $scope.list[i]={};
+//         $scope.list[i]["id"]=json[i].id;
+//         $scope.notificationCount[parseInt(json[i].type)-1]++;         	    
+//     }
+
+//     if(noMatch==true)
+//     {
+//     	notifyMe(json.length);
+//     }
+//         });
+//         allNotif=$scope.list;
+        
+		
+
+//     });
+
+  
+
+
+   
+
+
 
 function placeEmergencyMarkers(map,lat,long)
 {

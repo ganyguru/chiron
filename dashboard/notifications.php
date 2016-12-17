@@ -47,7 +47,7 @@ $_GET['type']=0;
 					<section class="page-content">
 						<div class="row" ng-controller="alerts">
 							<div class="col-lg-12">
-								
+								 
 <div class="panel panel-default" ng-repeat="(key,value) in list">
 	<div class="panel-heading">
 		<header style="color: {{ value.color }};font-size: 25px;">{{ value.type + " Emergency"}}</header>
@@ -55,7 +55,7 @@ $_GET['type']=0;
 		<div class="panel-heading-tools">
 			<div class="btn-group">
 				<a class="btn btn-icon-toggle panel-tools-loading"><i class="fa fa-refresh fa-spin"></i></a>
-				<a class="btn btn-icon-toggle panel-tools-collapse"><i class="material-icons">expand_more</i></a>
+				<a class="btn btn-icon-toggle panel-tools-collapse"><i class="material-icons">keyboard_arrow_up</i></a>
 
 			</div>
 		</div>
@@ -63,8 +63,12 @@ $_GET['type']=0;
 	<div class="panel-body">
 		<a href="https://www.google.co.in/maps/@{{ value.lat }},{{ value.long }},17.33z" target="_blank">Location of Emergency</a><br>
 		<b>Emergency Type : </b>{{value.etype}}<br>		
-		<b>Victim : </b>{{ value.name }}  | <b>Victim's Phone : </b>{{value.phone}}<br>
-		<b>Vehicle Number : </b>{{ value.vehicle }} | <b>Vehicle Driver : </b>{{value.driver}}
+		<b>Victim : </b>{{ value.name }}  | <b>Victim's Phone : </b><a href="tel:{{value.phone}}">{{value.phone}}</a><br>
+		<b>Vehicle Number : </b>{{ value.vehicle }} | <b>Vehicle Driver : </b>{{value.driver}}<br><br>
+		
+		<input type="text" class="form-control" id="description" placeholder="Description of Emergency">
+		
+		
 		<div class="panel-footer inner-offset">
 		<a href="#dismissModal" data-toggle="modal" href="#" class="btn btn-default btn-flat">Dismiss</a>
 		<a href="#acceptModal" data-toggle="modal" class="btn btn-primary btn-flat">Accept</a>

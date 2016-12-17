@@ -40,8 +40,79 @@ var emergency_count=0;
 //         };
 
 var ga;
+var allNotif=[];
 
 var app = angular.module("notification", []);
+
+app.service('cNotification', function () {
+  this.getNotificationCount = function ($http) {
+        notificationCount=[0,0,0];
+        $http.get("http://localhost/108/pAPIs/notification.php?user=3")
+        .then(function(response) {
+        json=response.data;
+        
+        var med=0;
+        var pol=0;
+        var fire=0;
+         for(i=0;i<json.length;i++)
+        {     
+          if(json[i].type=='1')
+          med++;
+          else if(json[i].type=='2')
+          pol++;
+          else if(json[i].type=='3')
+          fire++;    
+          console.log(json[i].type);
+          //notificationCount[parseInt(json[i].type)-1]++;               
+        }
+        
+        notificationCount[0]=med;
+        notificationCount[1]=pol;
+        notificationCount[2]=fire;
+        console.log(notificationCount);
+        });
+        return notificationCount;
+    }
+})
+
+// app.controller("cNotification", function($scope,$http,User) {
+//   var noMatch =true;
+//   $scope.notificationCount=[0,0,0];
+//   $scope.list = {};
+//   $http.get("http://localhost/108/pAPIs/notification.php?user=3")
+//     .then(function(response) {
+//       json=response.data;
+        
+        
+//          for(i=0;i<json.length;i++)
+//         {
+//           for (var index = 0; index < allNotif.length; ++index)
+//           {
+//         var item = allNotif[index];
+//         if(item.id == json[i].id){
+//             noMatch = false;
+//           break;
+//       }}
+//         $scope.list[i]={};
+//         $scope.list[i]["id"]=json[i].id;
+//         $scope.notificationCount[parseInt(json[i].type)-1]++;               
+//     }
+
+//     if(noMatch==true)
+//     {
+//       notifyMe(json.length);
+//     }
+//         });
+//         allNotif=$scope.list;
+        
+//     $scope.user=User;
+//     $scope.user.Medical=$scope.notificationCount[0];
+//     $scope.user.Police=$scope.notificationCount[1];
+//     $scope.user.Fire=$scope.notificationCount[2];
+
+//     });
+
+
 app.controller("alerts", function($scope,$http) {
   //$scope.parameter=getParameter;
   //alert($scope.parameter);
@@ -77,8 +148,10 @@ app.controller("alerts", function($scope,$http) {
       json=response.data;
         //var json=JSON.parse(response);
         //console.log(ga[0].lat);
+
          for(i=0;i<json.length;i++)
         {
+          
           $scope.list[i]={};
           $scope.list[i]["lat"]=json[i].lat;
           $scope.list[i]["long"]=json[i].long;
@@ -112,12 +185,45 @@ app.controller("alerts", function($scope,$http) {
 });
 
 
-app.controller("user", function($scope) {
+app.controller("user", function($scope,$http,cNotification) {
 	 // $http.get("welcome.htm")
   //   .then(function(response) {
   //       $scope.myWelcome = response.data;
   //   });
+    $scope.notificationCount=[0,0,0];
+  $scope.getNotificationCount = function () {
+      
+        $http.get("http://localhost/108/pAPIs/notification.php?user=3")
+        .then(function(response) {
+        json=response.data;
+        
+        var med=0;
+        var pol=0;
+        var fire=0;
+         for(i=0;i<json.length;i++)
+        {     
+          if(json[i].type=='1')
+          med++;
+          else if(json[i].type=='2')
+          pol++;
+          else if(json[i].type=='3')
+          fire++;    
+          //console.log("gol");
+          //console.log(json[i].type);
+          //notificationCount[parseInt(json[i].type,10)-1]++;               
+        }
+        
+        $scope.notificationCount[0]=med;
+        $scope.notificationCount[1]=pol;
+        $scope.notificationCount[2]=fire;
+        //console.log(notificationCount);
+        });
+};
+  typeName=['Medical','Police','Fire'];
   $scope.showLoader = true;
+  if(getParameter!=0)
+  $scope.pages=[typeName[getParameter-1],'Notification'];
+  else
   $scope.pages=['Notification'];
 
    $scope.firstname = 'Ganesh';

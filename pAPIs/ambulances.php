@@ -9,7 +9,7 @@ $conn_string = "host=localhost port=5432 user=postgres password=guru dbname=dev 
 $dbconn4 = pg_connect($conn_string);
 	
 
-$query="select vehicles.id,vehicles.lat,vehicles.long,vehicles.status,vehicles.driver, vehicles.phone,vehicles.vehicle_no,(select count(*) from emergency e where e.vehicle_id=vehicles.id) handle from vehicles where vehicles.type='".$_GET['type']."';";
+$query="select vehicles.id,vehicles.lat,vehicles.long,vehicles.type,vehicles.status,vehicles.driver, vehicles.phone,vehicles.vehicle_no,(select count(*) from emergency e where e.vehicle_id=vehicles.id) handle from vehicles where vehicles.type='".$_GET['type']."';";
 
 
 if($result = pg_exec($dbconn4, $query))
@@ -26,8 +26,8 @@ if($result = pg_exec($dbconn4, $query))
     'lat' => $row['lat'],
     'long' => $row['long'],
     'status' => $row['status'],        
-    'handle' => $row['handle']
-    
+    'handle' => $row['handle'],
+    'type' => $row['type']
 	);
 
  }

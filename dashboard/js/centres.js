@@ -75,11 +75,40 @@ app.controller("records", function($scope,$http) {
 });
 
 
-app.controller("user", function($scope) {
+app.controller("user", function($scope,$http) {
 	 // $http.get("welcome.htm")
   //   .then(function(response) {
   //       $scope.myWelcome = response.data;
   //   });
+  $scope.notificationCount=[0,0,0];
+  $scope.getNotificationCount = function () {
+      
+        $http.get("http://localhost/108/pAPIs/notification.php?user=3")
+        .then(function(response) {
+        json=response.data;
+        
+        var med=0;
+        var pol=0;
+        var fire=0;
+         for(i=0;i<json.length;i++)
+        {     
+          if(json[i].type=='1')
+          med++;
+          else if(json[i].type=='2')
+          pol++;
+          else if(json[i].type=='3')
+          fire++;    
+          //console.log("gol");
+          //console.log(json[i].type);
+          //notificationCount[parseInt(json[i].type,10)-1]++;               
+        }
+        
+        $scope.notificationCount[0]=med;
+        $scope.notificationCount[1]=pol;
+        $scope.notificationCount[2]=fire;
+        //console.log(notificationCount);
+        });
+};
   typeName=['Medical','Police','Fire'];
   $scope.showLoader = true;
   if(getParameter!=0)
