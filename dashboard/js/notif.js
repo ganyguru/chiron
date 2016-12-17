@@ -120,7 +120,7 @@ app.controller("alerts", function($scope,$http) {
   colors=['red','#0F486D','#F97210'];
   $scope.list = {};
   if(getParameter==0)
-  $http.get("http://localhost/108/pAPIs/notification.php?user=3")
+  $http.get("http://localhost/108/pAPIs/notification.php")
     .then(function(response) {
       json=response.data;
         //var json=JSON.parse(response);
@@ -137,12 +137,23 @@ app.controller("alerts", function($scope,$http) {
           $scope.list[i]["vehicle"]=json[i].vehicle_no;
           $scope.list[i]["driver"]=json[i].driver;
           $scope.list[i]["time"]=json[i].time;
+          $scope.list[i]["vphone"]=json[i].vphone;
           $scope.list[i]["etype"]="Kitchen";
+          if(json[i].type!='1')
+          {
+            $scope.list[i].incharge="Person Incharge";
+            $scope.list[i].vehtype="Station Name";
+          }
+          else
+          {
+            $scope.list[i].incharge="Vehicle Driver";
+            $scope.list[i].vehtype="Vehicle Number";
+          }
         }
     });
   else
   {
-    $http.get("http://localhost/108/pAPIs/notification.php?user=3&type="+getParameter)
+    $http.get("http://localhost/108/pAPIs/notification.php?type="+getParameter)
     .then(function(response) {
 
       json=response.data;
@@ -163,6 +174,16 @@ app.controller("alerts", function($scope,$http) {
           $scope.list[i]["driver"]=json[i].driver;
           $scope.list[i]["time"]=json[i].time;
           $scope.list[i]["etype"]="Kitchen";
+          if(json[i].type!='1')
+          {
+            $scope.list[i].incharge="Person Incharge";
+            $scope.list[i].vehtype="Station Name";
+          }
+          else
+          {
+            $scope.list[i].incharge="Vehicle Driver";
+            $scope.list[i].vehtype="Vehicle Number";
+          }
         }
         
     });
@@ -193,7 +214,7 @@ app.controller("user", function($scope,$http,cNotification) {
     $scope.notificationCount=[0,0,0];
   $scope.getNotificationCount = function () {
       
-        $http.get("http://localhost/108/pAPIs/notification.php?user=3")
+        $http.get("http://localhost/108/pAPIs/notification.php")
         .then(function(response) {
         json=response.data;
         

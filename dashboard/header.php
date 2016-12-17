@@ -24,7 +24,7 @@
 					<nav id="sidebar" ng-controller="user" ng-init="getNotificationCount()">
 						<ul>
 							<li class="red-500-background-color">
-								<a href="index.html">
+								<a href="place.php">
 									<span class="menu-item-ico"><i class="material-icons">call</i></span>
 									<span class="menu-item-name">Place Emergency</span>
 								</a>
@@ -49,7 +49,7 @@
 									<span class="badge badge-danger">{{notificationCount[0]}}</span>
 								</a>
 								<ul>
-									<li><a href="centres.php?type=1">Other Centres</a></li>
+									<!-- <li><a href="centres.php?type=1">Other Centres</a></li> -->
 									<li><a href="">Vehicle Monitor</a>
 									<ul>
 									<li><a href="vehicle.php?type=1">View Status</a></li>
@@ -66,11 +66,11 @@
 									<span class="badge badge-danger">{{notificationCount[1]}}</span>
 								</a>
 								<ul>
-									<li><a href="centres.php?type=2">Other Centres</a></li>
-									<li><a href="">Vehicle Monitor</a>
+									<!-- <li><a href="centres.php?type=2">Other Centres</a></li> -->
+									<li><a href="">Station Monitor</a>
 									<ul>
 									<li><a href="vehicle.php?type=2">View Status</a></li>
-									<li><a href="addvehicle.php?type=2">Add Vehicle</a></li>									
+									<li><a href="addvehicle.php?type=2">Add Station</a></li>									
 									
 									</ul></li>
 									<li><a href="notifications.php?type=2">Notifications</a></li>
@@ -83,11 +83,11 @@
 									<span class="badge badge-danger">{{notificationCount[2]}}</span>
 								</a>
 								<ul>
-									<li><a href="centres.php?type=3">Other Centres</a></li>
-									<li><a href="">Vehicle Monitor</a>
+									<!-- <li><a href="centres.php?type=3">Other Centres</a></li> -->
+									<li><a href="">Station Monitor</a>
 									<ul>
 									<li><a href="vehicle.php?type=3">View Status</a></li>
-									<li><a href="addvehicle.php?type=3">Add Vehicle</a></li>									
+									<li><a href="addvehicle.php?type=3">Add Station</a></li>									
 									
 									</ul></li>
 									<li><a href="notifications.php?type=3">Notifications</a></li>

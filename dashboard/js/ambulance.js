@@ -46,7 +46,13 @@ app.controller("records", function($scope,$http) {
   $scope.orderByField = 'driver';
   $scope.reverseSort = false;
 	$scope.list = [];
-
+  $scope.h1="Station Name";
+  $scope.h2="Person Incharge";
+  if(getParameter==1)
+  {
+    $scope.h1="Vehicle No.";
+  $scope.h2="Vehicle Driver";
+  }
   if(getParameter!=0)
   {
   $http.get("http://localhost/108/pAPIs/ambulances.php?type="+getParameter)
@@ -67,7 +73,7 @@ app.controller("records", function($scope,$http) {
           $scope.list[i]["long"]=json[i].long;
           $scope.list[i]["status"]=json[i].status;
           $scope.list[i]["handle"]=json[i].handle;
-          placeEmergencyMarkers(ambmap,parseFloat(json[i].lat),parseFloat(json[i].long),icons[parseInt(json[i].type,10)-1],json[i].id,json[i].vehicle_no,json[i].driver,json[i].phone)
+          placeEmergencyMarkers(ambmap,parseFloat(json[i].lat),parseFloat(json[i].long),icons[parseInt(json[i].type,10)-1],json[i].id,json[i].vehicle_no,json[i].driver,json[i].phone,getParameter);
           console.log(json[i].type);
         }
         $(".maplayerw").fadeOut();
@@ -199,17 +205,28 @@ function notifyMe(num) {
 
 }
 
-function placeEmergencyMarkers(map,lat,long,image,id,vno,driver,phone)
+function placeEmergencyMarkers(map,lat,long,image,id,vno,driver,phone,type)
 {
   //var image="img/plus.png";
   var myLatLng = {lat: lat, lng: long};
+  var heading="Station #";
+  var h1="Station Name";
+  var h2="Incharge";
+  var ptitle="Station #"+id;
+  if(type==1)
+  {
+    heading="Ambulance #";
+    h1="Vehicle No";
+    h2="Driver";
+    ptitle="Ambulance #"+id;
+  }
   var contentString = '<div id="content">'+
             '<div id="siteNotice">'+
             '</div>'+
-            '<h3 id="firstHeading" class="firstHeading">Ambulance #'+id+'</h3>'+
+            '<h3 id="firstHeading" class="firstHeading">'+heading+id+'</h3>'+
             '<div id="bodyContent">'+
-            '<p><b>Vehicle No : </b>'+vno+'<br> ' +
-            '<b>Driver Name : </b>'+driver+'<br> '+
+            '<p><b>'+h1+' : </b>'+vno+'<br> ' +
+            '<b>'+h2+' : </b>'+driver+'<br> '+
             '<b>Phone No : </b>'+phone+'<br> '+            
             '</div>'+
             '</div>';
@@ -221,7 +238,7 @@ function placeEmergencyMarkers(map,lat,long,image,id,vno,driver,phone)
     position: myLatLng,
     icon:image,
     map: map,
-    title: 'Name'
+    title: ptitle
   });
   marker.addListener('click', function() {
           infowindow.open(map, marker);

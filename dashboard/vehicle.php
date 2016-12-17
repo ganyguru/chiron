@@ -98,8 +98,8 @@ $_GET['type']=0;
 												<thead>
 													<tr>
 														<th style="cursor:pointer" class="text-right">#</th>
-														<th style="cursor:pointer" class="text-right" ng-click="orderByField='vehicle_no'; reverseSort = !reverseSort">Vehicle No.</th>
-														<th style="cursor:pointer" class="text-right" ng-click="orderByField='driver'; reverseSort = !reverseSort">Driver</th>
+														<th style="cursor:pointer" class="text-right" ng-click="orderByField='vehicle_no'; reverseSort = !reverseSort">{{h1}}</th>
+														<th style="cursor:pointer" class="text-right" ng-click="orderByField='driver'; reverseSort = !reverseSort">{{h2}}</th>
 														<th style="cursor:pointer" class="text-right" ng-click="orderByField='phone'; reverseSort = !reverseSort">Phone</th>
 														<th style="cursor:pointer" class="text-right" >Location</th>
 														<th style="cursor:pointer" class="text-right" ng-click="orderByField='status'; reverseSort = !reverseSort">Status</th>									

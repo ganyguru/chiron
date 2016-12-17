@@ -36,7 +36,7 @@ $_GET['type']=0;
 		</script>
 	</head>
 
-	<body class="container-fluid dark-sidebar dark-header-brand" ng-app="centres" ng-init="count=1">
+	<body class="container-fluid dark-sidebar dark-header-brand" ng-app="addamb" ng-init="count=1">
 	<div class="loader fade" ng-show="showLoader">
 		<div class="pulse">
 		</div>
@@ -44,7 +44,7 @@ $_GET['type']=0;
 		<div id="page-wrapper">
 			<?php include 'header.php'; ?>
 
-					<section class="page-content" ng-controller="records">
+					<section class="page-content" ng-controller="aamb">
 
 							
 
@@ -55,7 +55,7 @@ $_GET['type']=0;
 									<div class="panel-body">
 										
 											<form class="form" role="form">
-
+												<input type="hidden" class="form-control" id="type" value="{{type}}">
 												<div class="form-group floating-label">
 												<input type="text" class="form-control" id="vno">
 												<label for="regular2">Vehicle Number</label>
@@ -71,7 +71,7 @@ $_GET['type']=0;
 												<label for="regular2">Phone Number</label>
 												</div><br>
 												
-												<center><p><button type="button" class="btn btn-flat btn-primary">Add Ambulance</button></p></center>
+												<center><p><button type="button" class="btn btn-flat btn-primary">Add Vehicle</button></p></center>
 
 
 											</form>
@@ -92,44 +92,7 @@ $_GET['type']=0;
 		</div>
 
 		<!-- Modal -->
-		<div id="acceptModal" class="modal fade" style="display: none;">
-	<div class="modal-dialog" style="transform: scale(0.173333); opacity: 0; top: 340px; left: 439.562px;">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h4 class="modal-title">Do you want to dispatch the emergency vehicle?</h4>
-			</div>
-			<div class="modal-body">
-				<p>Select dispatch if you are sure about the emergency. You are going to be one of the reason for a person being alive.</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary btn-flat btn-ripple materialRipple-light materialRipple-btn" data-dismiss="modal">Disagree<div class="materialRipple-md-ripple-container"><div id="materialRipple-1481876427880" class="md-ripple md-ripple-placed md-ripple-scaled" style="top: 17.3047px; left: 57.0625px; width: 120.094px; height: 120.094px; opacity: 0;"></div></div></button>
-				<button type="button" class="btn btn-primary btn-flat btn-ripple materialRipple-light materialRipple-btn">Agree<div class="materialRipple-md-ripple-container"></div></button>
-			</div>
-		</div>
-	</div>
-</div>
-
-
-
-<div id="dismissModal" class="modal fade" style="display: none;">
-	<div class="modal-dialog" style="transform: scale(0.173333); opacity: 0; top: 340px; left: 439.562px;">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h4 class="modal-title">Do you want to dismiss the emergency?</h4>
-			</div>
-			<div class="modal-body">
-				<p>Dismiss dispatch if you are sure about it. You are going to be one of the reason for a person being alive.</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary btn-flat btn-ripple materialRipple-light materialRipple-btn" data-dismiss="modal">Disagree<div class="materialRipple-md-ripple-container"><div id="materialRipple-1481876427880" class="md-ripple md-ripple-placed md-ripple-scaled" style="top: 17.3047px; left: 57.0625px; width: 120.094px; height: 120.094px; opacity: 0;"></div></div></button>
-				<button type="button" class="btn btn-primary btn-flat btn-ripple materialRipple-light materialRipple-btn">Agree<div class="materialRipple-md-ripple-container"></div></button>
-			</div>
-		</div>
-	</div>
-</div>
-
+		
 		<!-- Core Scripts - Include with every page -->
 		<script src="js/jquery-1.10.2.js" type="text/javascript"></script>
 		<script src="js/jquery-ui.custom.min.js" type="text/javascript"></script>
@@ -169,6 +132,6 @@ $_GET['type']=0;
 		<script src="js/bemat-admin-demo.min.js"></script>
 <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-72024640-1', 'auto');ga('send', 'pageview');</script> 
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-		<script type="text/javascript" src="js/centres.js"></script>
+		<script type="text/javascript" src="js/addamb.js"></script>
 	</body>
 </html>
