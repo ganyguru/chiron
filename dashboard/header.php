@@ -43,10 +43,10 @@
 									<span class="badge badge-danger">3</span>
 								</a>
 								<ul>
-									<li><a href="page-accordions.html">Other Centres</a></li>
+									<li><a href="centres.php?type=1">Other Centres</a></li>
 									<li><a href="">Ambulance Monitor</a>
 									<ul>
-									<li><a href="page-accordions.html">View Status</a></li>
+									<li><a href="ambulance.php?type=1">View Status</a></li>
 									<li><a href="page-alerts.html">Add Ambulance</a></li>									
 									<li><a href="page-boxshadow.html">Search/Edit Ambulance</a></li>
 									</ul></li>
@@ -60,10 +60,10 @@
 									<span class="badge badge-danger">3</span>
 								</a>
 								<ul>
-									<li><a href="page-accordions.html">Other Centres</a></li>
+									<li><a href="centres.php?type=2">Other Centres</a></li>
 									<li><a href="">Police Vehicle Monitor</a>
 									<ul>
-									<li><a href="page-accordions.html">View Status</a></li>
+									<li><a href="ambulance.php?type=2">View Status</a></li>
 									<li><a href="page-alerts.html">Add Vehicle</a></li>									
 									<li><a href="page-boxshadow.html">Search/Edit Vehicle</a></li>
 									</ul></li>
@@ -77,10 +77,10 @@
 									<span class="badge badge-danger">3</span>
 								</a>
 								<ul>
-									<li><a href="page-accordions.html">Other Centres</a></li>
+									<li><a href="centres.php?type=3">Other Centres</a></li>
 									<li><a href="">Fire Vehicle Monitor</a>
 									<ul>
-									<li><a href="page-accordions.html">View Status</a></li>
+									<li><a href="ambulance.php?type=3">View Status</a></li>
 									<li><a href="page-alerts.html">Add Vehicle</a></li>									
 									<li><a href="page-boxshadow.html">Search/Edit Vehicle</a></li>
 									</ul></li>

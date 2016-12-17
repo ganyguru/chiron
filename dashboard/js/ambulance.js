@@ -41,15 +41,15 @@ var emergency_count=0;
 
 
 
-var app = angular.module("centres", []);
+var app = angular.module("ambulances", []);
 app.controller("records", function($scope,$http) {
-  $scope.orderByField = 'name';
+  $scope.orderByField = 'driver';
   $scope.reverseSort = false;
 	$scope.list = [];
 
   if(getParameter!=0)
   {
-  $http.get("http://localhost/108/pAPIs/centres.php?type="+getParameter)
+  $http.get("http://localhost/108/pAPIs/ambulances.php?type="+getParameter)
     .then(function(response) {
       json=response.data;
         //var json=JSON.parse(response);
@@ -59,15 +59,15 @@ app.controller("records", function($scope,$http) {
         {
           $scope.list[i]={};
           $scope.list[i].id=json[i].id;
-          $scope.list[i].name=json[i].name;
-          $scope.list[i]["district"]=json[i].district;
+          
+          $scope.list[i]["driver"]=json[i].driver;
+          $scope.list[i]["vehicle_no"]=json[i].vehicle_no;
           $scope.list[i]["phone"]=json[i].phone;
-          $scope.list[i]["total"]=json[i].total;
           $scope.list[i]["lat"]=json[i].lat;
           $scope.list[i]["long"]=json[i].long;
-          $scope.list[i]["on"]=json[i].on;
+          $scope.list[i]["status"]=json[i].status;
           $scope.list[i]["handle"]=json[i].handle;
-          $scope.list[i]["off"]=json[i].total-json[i].on;
+          
         }
     });
   }
@@ -83,9 +83,9 @@ app.controller("user", function($scope) {
   typeName=['Medical','Police','Fire'];
   $scope.showLoader = true;
   if(getParameter!=0)
-  $scope.pages=[typeName[getParameter-1],'Other Centres'];
+  $scope.pages=[typeName[getParameter-1],'Ambulance Monitor','View Status'];
   else
-  $scope.pages=['Other Centres'];
+  $scope.pages=['Ambulance Monitor','View Status'];
   
    $scope.firstname = 'Ganesh';
    $scope.lastname = 'Raghavendran';

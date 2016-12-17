@@ -36,7 +36,7 @@ $_GET['type']=0;
 		</script>
 	</head>
 
-	<body class="container-fluid dark-sidebar dark-header-brand" ng-app="centres" ng-init="count=1">
+	<body class="container-fluid dark-sidebar dark-header-brand" ng-app="ambulances" ng-init="count=1">
 	<div class="loader fade" ng-show="showLoader">
 		<div class="pulse">
 		</div>
@@ -68,28 +68,24 @@ $_GET['type']=0;
 												<thead>
 													<tr>
 														<th style="cursor:pointer" class="text-right">#</th>
-														<th style="cursor:pointer" class="text-right" ng-click="orderByField='name'; reverseSort = !reverseSort">Name</th>
-														<th style="cursor:pointer" class="text-right" ng-click="orderByField='district'; reverseSort = !reverseSort">District</th>
+														<th style="cursor:pointer" class="text-right" ng-click="orderByField='vehicle_no'; reverseSort = !reverseSort">Vehicle No.</th>
+														<th style="cursor:pointer" class="text-right" ng-click="orderByField='driver'; reverseSort = !reverseSort">Driver</th>
 														<th style="cursor:pointer" class="text-right" ng-click="orderByField='phone'; reverseSort = !reverseSort">Phone</th>
 														<th style="cursor:pointer" class="text-right" >Location</th>
-														<th style="cursor:pointer" class="text-right" ng-click="orderByField='total'; reverseSort = !reverseSort">Total Vehicles</th>
-														<th style="cursor:pointer" class="text-right" ng-click="orderByField='on'; reverseSort = !reverseSort">On Duty</th>
-														<th style="cursor:pointer" class="text-right" ng-click="orderByField='off'; reverseSort = !reverseSort">Off Duty</th>
+														<th style="cursor:pointer" class="text-right" ng-click="orderByField='status'; reverseSort = !reverseSort">Status</th>									
 														<th style="cursor:pointer" class="text-right" ng-click="orderByField='handle'; reverseSort = !reverseSort">Emergency Handled</th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr class="text-right" ng-repeat="(key,value) in list | filter:query | orderBy:orderByField:reverseSort" >
 														<td>{{ $index + 1 }}</td>
-														<td>{{ value.name }}</td>
-														<td>{{ value.district }}</td>
+														<td>{{ value.vehicle_no }}</td>
+														<td>{{ value.driver }}</td>
 														<td>{{ value.phone }}</td>
 														<td><a href="https://google.co.in/maps/@{{value.lat}},{{value.long}},17.33z" target="_blank">
 															Location
 														</a></td>
-														<td>{{value.total}}</td>
-														<td>{{value.on}}</td>
-														<td>{{value.off}}</td>
+														<td>{{value.status}}</td>														
 														<td>{{value.handle}}</td>
 													</tr>
 													
@@ -189,6 +185,6 @@ $_GET['type']=0;
 		<script src="js/bemat-admin-demo.min.js"></script>
 <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-72024640-1', 'auto');ga('send', 'pageview');</script> 
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-		<script type="text/javascript" src="js/centres.js"></script>
+		<script type="text/javascript" src="js/ambulance.js"></script>
 	</body>
 </html>
