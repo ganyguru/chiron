@@ -1,6 +1,10 @@
 var sock = null;
-var wsuri = "ws://4e16c88d.ngrok.io/admin/notif";
+var wsuri = "ws://4e16c88d.ngrok.io/admin/ambulance";
 var emergency_count=0;
+var ambulances={};
+// var icons=['img/ambulance.png','img/police.png','img/fire.png'];
+// 
+
 // window.onload = function() {
 // console.log("onload");
 
@@ -15,20 +19,38 @@ var emergency_count=0;
 //             }
 
 //             sock.onmessage = function(e) {
-
+//                 console.log(JSON.parse(e.data));
 //                 var json = JSON.parse(e.data);
-//                 for(i=0;i<json.length;i++)
-//                 {
-//                 	placeEmergencyMarkers(emermap,parseFloat(json[i].Lat),parseFloat(json[i].Long));
-//                 }
+//                  for(i=0;i<json.length;i++)
+//         {
+//           ambulances[i]={};
+//           ambulances[i].id=json[i].Dd;          
+//           ambulances[i]["driver"]=json[i].Driver;
+//           if(json[i].Type=='1')            
+//           ambulances[i]["vehicle_no"]=json[i].Vehicle_no;
+//           else
+//           ambulances[i]["vehicle_no"]=json[i].District;
+//           ambulances[i]["phone"]=json[i].Phone;
+//           ambulances[i]["lat"]=json[i].Lat;
+//           ambulances[i]["long"]=json[i].Long;
+//           ambulances[i]["status"]=json[i].Status;
+//           ambulances[i]["handle"]=json[i].Handle;
+//           placeEmergencyMarkers(ambmap,parseFloat(json[i].Lat),parseFloat(json[i].Long),'img/ambulance.png',json[i].Id,json[i].Vehicle_no,json[i].Driver,json[i].Phone,'1');
+//           $(".maplayerw").fadeOut();
+//           //console.log(json[i].type);
+//         }
+//        //          for(i=0;i<json.length;i++)
+//        //          {
+//        //          	placeEmergencyMarkers(emermap,parseFloat(json[i].Lat),parseFloat(json[i].Long));
+//        //          }
 
-//                 var appElement = document.querySelector('[ng-controller=emergency]');
-//     			var $scope = angular.element(appElement).scope();
-//     			$scope.$apply(function() {
-//         		$scope.tcount = i;
-//     				});
+//        //          var appElement = document.querySelector('[ng-controller=emergency]');
+//     			// var $scope = angular.element(appElement).scope();
+//     			// $scope.$apply(function() {
+//        //  		$scope.tcount = i;
+//     			// 	});
 
-//                 $(".maplayerw").fadeOut();
+//        //          $(".maplayerw").fadeOut();
 //                 //console.log("hi");
 
 //             }
@@ -38,17 +60,17 @@ var emergency_count=0;
 //             var msg = document.getElementById('message').value;
 //             sock.send(msg);
 //         };
-
-
-
 var app = angular.module("ambulances", []);
+
+
 app.controller("records", function($scope,$http) {
   $scope.orderByField = 'driver';
   $scope.reverseSort = false;
-	$scope.list = [];
-  $scope.h1="Station Name";
-  $scope.h2="Person Incharge";
-  $scope.loading="Loading Fire Stations...";
+	$scope.list = {};
+  $scope.list=ambulances;
+  $scope.h1="Vehicle No.";
+  $scope.h2="Vehicle Driver";
+  $scope.loading="Loading Vehicles/Stations...";
   if(getParameter==1)
   {
     $scope.h1="Vehicle No.";
@@ -60,7 +82,7 @@ app.controller("records", function($scope,$http) {
     $scope.loading="Loading Police Stations...";
   if(getParameter!=0)
   {
-  $http.get("http://localhost/108/pAPIs/ambulances.php?type="+getParameter)
+  $http.get("http://4e16c88d.ngrok.io/admin/ambulance")
     .then(function(response) {
       json=response.data;
       icons=['img/ambulance.png','img/police.png','img/fire.png'];
@@ -70,18 +92,18 @@ app.controller("records", function($scope,$http) {
          for(i=0;i<json.length;i++)
         {
           $scope.list[i]={};
-          $scope.list[i].id=json[i].id;          
-          $scope.list[i]["driver"]=json[i].driver;
+          $scope.list[i].id=json[i].Id;          
+          $scope.list[i]["driver"]=json[i].Driver;
           if(json[i].type=='1')            
-          $scope.list[i]["vehicle_no"]=json[i].vehicle_no;
+          $scope.list[i]["vehicle_no"]=json[i].Vehicle_no;
           else
-          $scope.list[i]["vehicle_no"]=json[i].district;
-          $scope.list[i]["phone"]=json[i].phone;
-          $scope.list[i]["lat"]=json[i].lat;
-          $scope.list[i]["long"]=json[i].long;
-          $scope.list[i]["status"]=json[i].status;
-          $scope.list[i]["handle"]=json[i].handle;
-          placeEmergencyMarkers(ambmap,parseFloat(json[i].lat),parseFloat(json[i].long),icons[parseInt(json[i].type,10)-1],json[i].id,json[i].vehicle_no,json[i].driver,json[i].phone,getParameter);
+          $scope.list[i]["vehicle_no"]=json[i].District;
+          $scope.list[i]["phone"]=json[i].Phone;
+          $scope.list[i]["lat"]=json[i].Lat;
+          $scope.list[i]["long"]=json[i].Long;
+          $scope.list[i]["status"]=json[i].Status;
+          $scope.list[i]["handle"]=json[i].Handle;
+          placeEmergencyMarkers(ambmap,parseFloat(json[i].Lat),parseFloat(json[i].Long),icons[parseInt(json[i].Type,10)-1],json[i].Id,json[i].Vehicle_no,json[i].Driver,json[i].Phone,'1');
           console.log(json[i].type);
         }
         $(".maplayerw").fadeOut();

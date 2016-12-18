@@ -39,14 +39,14 @@
 								<a href="notifications.php">
 									<span class="menu-item-ico"><i class="material-icons">error</i></span>
 									<span class="menu-item-name">Notifications</span>
-									<span class="badge badge-info">{{notificationCount[0]+notificationCount[1]+notificationCount[2]}}</span>
+									<!-- <span class="badge badge-info">{{notificationCount[0]+notificationCount[1]+notificationCount[2]}}</span> -->
 								</a>
 							</li>
 							<li>
 								<a href="">
 									<span class="menu-item-ico"><i class="material-icons">favorite</i></span>
 									<span class="menu-item-name">Medical</span>
-									<span class="badge badge-danger">{{notificationCount[0]}}</span>
+									<!-- <span class="badge badge-danger">{{notificationCount[0]}}</span> -->
 								</a>
 								<ul>
 									<!-- <li><a href="centres.php?type=1">Other Centres</a></li> -->
@@ -63,16 +63,16 @@
 								<a href="">
 									<span class="menu-item-ico"><i class="material-icons">stars</i></span>
 									<span class="menu-item-name">Police</span>
-									<span class="badge badge-danger">{{notificationCount[1]}}</span>
+									<!-- <span class="badge badge-danger">{{notificationCount[1]}}</span> -->
 								</a>
 								<ul>
 									<!-- <li><a href="centres.php?type=2">Other Centres</a></li> -->
-									<li><a href="">Station Monitor</a>
+									<!-- <li><a href="">Station Monitor</a>
 									<ul>
 									<li><a href="vehicle.php?type=2">View Status</a></li>
 									<li><a href="addvehicle.php?type=2">Add Station</a></li>									
 									
-									</ul></li>
+									</ul></li> -->
 									<li><a href="notifications.php?type=2">Notifications</a></li>
 								</ul>
 							</li>
@@ -80,16 +80,16 @@
 								<a href="">
 									<span class="menu-item-ico"><i class="material-icons">change_history</i></span>
 									<span class="menu-item-name">Fire</span>
-									<span class="badge badge-danger">{{notificationCount[2]}}</span>
+									<!-- <span class="badge badge-danger">{{notificationCount[2]}}</span> -->
 								</a>
 								<ul>
 									<!-- <li><a href="centres.php?type=3">Other Centres</a></li> -->
-									<li><a href="">Station Monitor</a>
+									<!-- <li><a href="">Station Monitor</a>
 									<ul>
 									<li><a href="vehicle.php?type=3">View Status</a></li>
 									<li><a href="addvehicle.php?type=3">Add Station</a></li>									
 									
-									</ul></li>
+									</ul></li> -->
 									<li><a href="notifications.php?type=3">Notifications</a></li>
 								</ul>
 							</li>

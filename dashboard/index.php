@@ -8,7 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
-		<title>108 Emergency Response Center - Dashboard</title>
+		<title>108 Emergencies</title>
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
 		<!-- Bootstrap Core CSS - Include with every page -->
@@ -51,7 +51,7 @@
 
 					<section class="page-content">
 						
-						<div class="row">
+						<!-- <div class="row">
 							<div class="col-lg-3 col-sm-6">
 								<div class="panel panel-default">
 									<div class="panel-body no-padding">
@@ -123,7 +123,7 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 
 
 						<div class="row">
@@ -145,7 +145,7 @@
 														<div class="col-lg-12">
 															<div class="stat-wrapper">
 																<h4 class="no-margin-top margin-bottom-2">Total Emergencies: <span class="pull-right">{{ tcount }}</span></h4>
-																<div class="linear-progress-demo " data-toggle="linear-progress" data-mode="determinate" data-type="primary" data-value="30"></div>
+																<div class="linear-progress-demo " data-toggle="linear-progress" data-mode="determinate" data-type="primary" data-value="100"></div>
 															</div>
 														</div>
 														<div class="col-lg-12">

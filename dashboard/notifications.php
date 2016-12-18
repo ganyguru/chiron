@@ -19,7 +19,7 @@ $_GET['type']=0;
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
-		<title>Bemat Admin v1 - Blank Page</title>
+		<title>108 Emergencies</title>
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
 		<!-- Bootstrap Core CSS - Include with every page -->
@@ -62,7 +62,7 @@ $_GET['type']=0;
 							<div class="col-lg-12">
 								<div class="btn-group">
 								<a class="btn btn-icon-toggle panel-tools-loading"><i class="fa fa-refresh fa-spin"></i></a>
-								<a class="btn btn-icon-toggle panel-tools-collapse"><i class="material-icons">keyboard_arrow_up</i></a>
+								
 
 								</div>
 							</div>
@@ -90,7 +90,7 @@ $_GET['type']=0;
 		<b>Victim : </b>{{ value.ename }}  | <b>Victim's Phone : </b><a href="tel:{{value.phone}}">{{value.ephone}}</a><br>
 		<br>
 
-		<div class="panel-group" id="accordion1">
+		<div class="panel-group" id="accordion1" ng-show="showmed">
 <div class="panel panel-default" ng-repeat="(k,v) in value.vehicle" data-id="{{value.eid}}">
 	<div aria-expanded="true" class="panel-heading" data-toggle="collapse" data-parent="#accordion1" >
 		<header>{{v.vtype + " #" +v.vid}}</header>		
@@ -105,25 +105,14 @@ $_GET['type']=0;
 </div><!--end .panel -->
 
 </div><!-- /.panel-group -->
-
-		<!-- <div class="panel panel-default" ng-repeat="(k,v) in value.vehicle">
-			<div class="panel-heading">
-				<h3>{{v.vtype}}</h3>
-			</div>
-			<div class="panel-body">
-			</div>
-		</div> -->
-		<!-- <a href="https://www.google.co.in/maps/@{{ value.lat }},{{ value.long }},17.33z" target="_blank">Location of Emergency</a><br>
-			
-		<b>Victim : </b>{{ value.name }}  | <b>Victim's Phone : </b><a href="tel:{{value.phone}}">{{value.phone}}</a><br>
-		<b>{{ value.vehtype }} : </b>{{ value.vehicle }} | <b>{{ value.incharge }} : </b>{{value.driver}}<br>
-		<b>Incharge Contact : </b>{{ value.vphone }}<br><br> -->
+		
+		
 		
 		<input type="text" class="form-control" id="description" placeholder="Description of Emergency" value="{{value.desc}}" >
 		
 		
 		<div class="panel-footer inner-offset" data-id="{{value.eid}}">
-		<a href="#dismissModal" data-toggle="modal" href="#" class="btn btn-default btn-flat">Dismiss</a>
+		<!-- <a href="#dismissModal" data-toggle="modal" href="#" class="btn btn-default btn-flat">Dismiss</a> -->
 		<a href="#acceptModal" data-toggle="modal" class="btn btn-primary btn-flat" onclick="setaccept(this)">Accept</a>
 	</div>
 	</div>

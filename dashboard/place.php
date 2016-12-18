@@ -19,7 +19,7 @@ $_GET['type']=0;
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
-		<title>Bemat Admin v1 - Blank Page</title>
+		<title>108 Emergencies</title>
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
 		<!-- Bootstrap Core CSS - Include with every page -->
@@ -87,7 +87,7 @@ $_GET['type']=0;
 														
 													</select>
 													
-												</div>
+												</div><br><br>
 
 												<div class="form-group ">
 														<input type="text" class="form-control" id="injured" placeholder="injured">

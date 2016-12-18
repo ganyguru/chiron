@@ -49,8 +49,8 @@ console.log("onload");
             sock2=new WebSocket("ws://4e16c88d.ngrok.io/admin/emergencycount");
             sock2.onmessage = function(e) {
             	//var res=JSON.parse(e.data);
-            	var count=JSON.parse(e.data).Id;
-            	notifyMe(count);
+            	var count=parseInt(JSON.parse(e.data).Id,10)-37;
+            	// notifyMe(count);
             	
             }
 

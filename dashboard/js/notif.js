@@ -1,5 +1,8 @@
  var sock = null;
+ if(getParameter==1)
  var wsuri = "ws://4e16c88d.ngrok.io/admin/notification";
+else
+  var wsuri = "ws://4e16c88d.ngrok.io/admin/firepolice";
 var emergency_count=0;
 var allNotif={};
  window.onload = function() {
@@ -16,6 +19,7 @@ var allNotif={};
             }
 
             sock.onmessage = function(e) {
+
               typeName=['Medical','Police','Fire'];
               ids=[];
               descs=[];
@@ -28,11 +32,44 @@ var allNotif={};
                var k=0;
                var m=0;
                var j=0;
+
+
                for(i=0;i<data.length;i++)
                {
-                if(getParameter==0 || getParameter==data[i].Type)
+
+                if(getParameter!=1)
                 {
-                if(i==0)
+                  allNotif[i]={};
+                  allNotif[i].eid=data[i].Eid;
+                  allNotif[i].elat=data[i].ELat;
+                  allNotif[i].elong=data[i].ELong;
+                  allNotif[i].ephone=data[i].Phone;
+                  allNotif[i].ename=data[i].Name;
+                  allNotif[i].etime=data[i].Time;
+                  allNotif[i].status=data[i].Status;
+                  allNotif[i].type=typeName[parseInt(getParameter,10)-1];
+                  allNotif[i].color=colors[parseInt(getParameter)-1];         
+                  
+                  allNotif[i].desc=descs[parseInt(getParameter,10)-1][parseInt(data[i].Description,10)];
+                  var appElement = document.querySelector('[ng-controller=alerts]');
+                  var $scope = angular.element(appElement).scope();
+                  $scope.$apply(function() {
+                    $scope.list = allNotif;
+                  });
+                  var postdata;
+                  if(ids.length!=0)
+                  postdata={"Id":ids};
+                  else
+                  postdata={"Id":[1]};
+
+                  $.post("http://4e16c88d.ngrok.io/admin/seen", JSON.stringify(postdata), function(result){
+               
+                  });
+                  continue;
+                }
+
+
+                if(i==0 || allNotif[j].eid!=data[i].Eid)
                 {
                   ids[m]=parseInt(data[i].Eid,10);
                   m++;
@@ -100,53 +137,7 @@ var allNotif={};
                   allNotif[j].vehicle[k].vid=data[i].Vehicle_id;
                   ++k;
                 }
-                else if(allNotif[j].eid!=data[i].Eid)
-                {
-                  k=0;
-                  ids[m]=parseInt(data[i].Eid,10);
-                  m++;
-                  allNotif[i]={};
-                  allNotif[i].eid=data[i].Eid;
-                  allNotif[i].elat=data[i].ELat;
-                  allNotif[i].elong=data[i].ELong;
-                  allNotif[i].ephone=data[i].Phone_1;
-                  allNotif[i].ename=data[i].Name_1;
-                  allNotif[i].etime=data[i].Time;
-                  allNotif[i].status=data[i].Status;
-                  allNotif[i].etype=data[i].Type;
-                  allNotif[i].type=typeName[parseInt(data[i].Type,10)-1];
-                  allNotif[i].color=colors[parseInt(data[i].Type)-1];
-                  if(data[i].Description!=-1)
-                  allNotif[i].desc=descs[parseInt(data[i].Type,10)-1][parseInt(data[i].Description,10)];
-                  else
-                  allNotif[i].desc="";
-
-                  allNotif[i].vehicle={};
-                  allNotif[i].vehicle[k]={};
-                   allNotif[i].vehicle[k].vtype="Station";
-                  if(allNotif[i].etype=='1')
-                    allNotif[i].vehicle[k].vtype="Ambulance";
-
-                   allNotif[i].vehicle[k].incharge="Person Incharge";
-                  if(allNotif[i].etype=='1')
-                    allNotif[i].vehicle[k].incharge="Driver";
-
-                  allNotif[i].vehicle[k].vehicle=data[i].Name_2;
-                  if(allNotif[i].etype=='1')
-                    allNotif[i].vehicle[k].vehicle=data[i].Vehicle_no;
-
-
-                  allNotif[i].vehicle[k].vname=data[i].Name_2;
-                  allNotif[i].vehicle[k].vphone=data[i].Phone_2;
-                  allNotif[i].vehicle[k].vlat=data[i].VLat;
-                  allNotif[i].vehicle[k].vlong=data[i].VLong;
-                  allNotif[i].vehicle[k].driver=data[i].Driver;
-                  allNotif[i].vehicle[k].vno=data[i].Vehicle_no;
-                  allNotif[i].vehicle[k].vid=data[i].Vehicle_id;
-                  ++k;
-                  j=i;
-                }
-              }
+                
                }
 
             var appElement = document.querySelector('[ng-controller=alerts]');
@@ -154,8 +145,12 @@ var allNotif={};
             $scope.$apply(function() {
                     $scope.list = allNotif;
             });
+            var postdata;
+            if(ids.length!=0)
+             postdata={"Id":ids};
+            else
+             postdata={"Id":[1]};
 
-            var postdata={"Id":ids};
             $.post("http://4e16c88d.ngrok.io/admin/seen", JSON.stringify(postdata), function(result){
                
             });
@@ -182,36 +177,36 @@ function dismissambulance(item)
 
 var app = angular.module("notification", []);
 
-app.service('cNotification', function () {
-  this.getNotificationCount = function ($http) {
-        notificationCount=[0,0,0];
-        $http.get("http://localhost/108/pAPIs/notification.php?user=3")
-        .then(function(response) {
-        json=response.data;
+// app.service('cNotification', function () {
+//   this.getNotificationCount = function ($http) {
+//         notificationCount=[0,0,0];
+//         $http.get("http://localhost/108/pAPIs/notification.php?user=3")
+//         .then(function(response) {
+//         json=response.data;
         
-        var med=0;
-        var pol=0;
-        var fire=0;
-         for(i=0;i<json.length;i++)
-        {     
-          if(json[i].type=='1')
-          med++;
-          else if(json[i].type=='2')
-          pol++;
-          else if(json[i].type=='3')
-          fire++;    
-          console.log(json[i].type);
-          //notificationCount[parseInt(json[i].type)-1]++;               
-        }
+//         var med=0;
+//         var pol=0;
+//         var fire=0;
+//          for(i=0;i<json.length;i++)
+//         {     
+//           if(json[i].type=='1')
+//           med++;
+//           else if(json[i].type=='2')
+//           pol++;
+//           else if(json[i].type=='3')
+//           fire++;    
+//           console.log(json[i].type);
+//           //notificationCount[parseInt(json[i].type)-1]++;               
+//         }
         
-        notificationCount[0]=med;
-        notificationCount[1]=pol;
-        notificationCount[2]=fire;
-        console.log(notificationCount);
-        });
-        return notificationCount;
-    }
-})
+//         notificationCount[0]=med;
+//         notificationCount[1]=pol;
+//         notificationCount[2]=fire;
+//         console.log(notificationCount);
+//         });
+//         return notificationCount;
+//     }
+// })
 
 // app.controller("cNotification", function($scope,$http,User) {
 //   var noMatch =true;
@@ -257,6 +252,15 @@ app.controller("alerts", function($scope,$http) {
   typeName=['Medical','Police','Fire'];
   colors=['red','#0F486D','#F97210'];
   $scope.list = {};
+  if(getParameter==1)
+  {
+  $scope.showothers=false;
+  $scope.showmed=true;
+}
+  else
+  {
+  $scope.showmed=false;
+  $scope.showothers=true;}
 
   // websocketService.start("ws://4e16c88d.ngrok.io/admin/notification", function (evt) {
   //       data={Id:2};
@@ -391,44 +395,44 @@ function acceptambulance()
     });
 }
 
-app.controller("accept", function($scope,$http,cNotification) {
+app.controller("accept", function($scope,$http) {
   $scope.eid="";
   $scope.uid="1";
 });
-app.controller("user", function($scope,$http,cNotification) {
+app.controller("user", function($scope,$http) {
 	 // $http.get("welcome.htm")
   //   .then(function(response) {
   //       $scope.myWelcome = response.data;
   //   });
-    $scope.notificationCount=[0,0,0];
-  $scope.getNotificationCount = function () {
+//     $scope.notificationCount=[0,0,0];
+//   $scope.getNotificationCount = function () {
       
-        $http.get("http://localhost/108/pAPIs/notification.php")
-        .then(function(response) {
-        json=response.data;
+//         $http.get("http://localhost/108/pAPIs/notification.php")
+//         .then(function(response) {
+//         json=response.data;
         
-        var med=0;
-        var pol=0;
-        var fire=0;
-         for(i=0;i<json.length;i++)
-        {     
-          if(json[i].type=='1')
-          med++;
-          else if(json[i].type=='2')
-          pol++;
-          else if(json[i].type=='3')
-          fire++;    
-          //console.log("gol");
-          //console.log(json[i].type);
-          //notificationCount[parseInt(json[i].type,10)-1]++;               
-        }
+//         var med=0;
+//         var pol=0;
+//         var fire=0;
+//          for(i=0;i<json.length;i++)
+//         {     
+//           if(json[i].type=='1')
+//           med++;
+//           else if(json[i].type=='2')
+//           pol++;
+//           else if(json[i].type=='3')
+//           fire++;    
+//           //console.log("gol");
+//           //console.log(json[i].type);
+//           //notificationCount[parseInt(json[i].type,10)-1]++;               
+//         }
         
-        $scope.notificationCount[0]=med;
-        $scope.notificationCount[1]=pol;
-        $scope.notificationCount[2]=fire;
-        //console.log(notificationCount);
-        });
-};
+//         $scope.notificationCount[0]=med;
+//         $scope.notificationCount[1]=pol;
+//         $scope.notificationCount[2]=fire;
+//         //console.log(notificationCount);
+//         });
+// };
   typeName=['Medical','Police','Fire'];
   $scope.showLoader = true;
   if(getParameter!=0)

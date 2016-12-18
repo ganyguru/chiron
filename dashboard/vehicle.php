@@ -19,7 +19,7 @@ $_GET['type']=0;
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
-		<title>Bemat Admin v1 - Blank Page</title>
+		<title>108 Emergencies</title>
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
 		<!-- Bootstrap Core CSS - Include with every page -->
@@ -109,7 +109,7 @@ $_GET['type']=0;
 													</tr>
 												</thead>
 												<tbody>
-													<tr class="text-right" ng-repeat="(key,value) in list | filter:query | orderBy:orderByField:reverseSort" >
+													<tr class="text-right" ng-repeat="(key,value) in list " >
 														<td data-id="{{value.id}}" >{{ $index + 1 }}</td>
 														<td data-id="{{value.vehicle_no}}">{{ value.vehicle_no }}</td>
 														<td data-id="{{value.driver}}">{{ value.driver }}</td>
@@ -119,8 +119,8 @@ $_GET['type']=0;
 														</a></td>
 														<td>{{value.status}}</td>														
 														<td>{{value.handle}}</td>
-														<td><a href="#EditModal" data-toggle="modal" onclick="editclick(this)" class="editlink">Edit</a></td>
-														<td><a href="#NotifyModal" data-toggle="modal" onclick="notifyclick(this)">Notify</a></td>
+														<!-- <td><a href="#EditModal" data-toggle="modal" onclick="editclick(this)" class="editlink">Edit</a></td>
+														<td><a href="#NotifyModal" data-toggle="modal" onclick="notifyclick(this)">Notify</a></td> -->
 
 													</tr>
 													
