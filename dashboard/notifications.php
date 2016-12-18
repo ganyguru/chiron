@@ -44,11 +44,34 @@ $_GET['type']=0;
 		<div id="page-wrapper">
 			<?php include 'header.php'; ?>
 
-					<section class="page-content">
-						<div class="row" ng-controller="alerts">
+					<section class="page-content" ng-controller="alerts">
+
+
+				<!-- <div class="row">
+							<div class="col-sm-12">
+							<div class="panel panel-default">
+									<div class="panel-body">
+									<label>Search:<input  class="form-control input-sm" ng-model="query" id="query" placeholder=""></label>
+									
+									</div>
+									</div>
+							
+							</div>
+							</div> -->
+							<div class="row" >
+							<div class="col-lg-12">
+								<div class="btn-group">
+								<a class="btn btn-icon-toggle panel-tools-loading"><i class="fa fa-refresh fa-spin"></i></a>
+								<a class="btn btn-icon-toggle panel-tools-collapse"><i class="material-icons">keyboard_arrow_up</i></a>
+
+								</div>
+							</div>
+							</div>
+
+						<div class="row" >
 							<div class="col-lg-12">
 								 
-<div class="panel panel-default" ng-repeat="(key,value) in list">
+<div class="panel panel-default" ng-repeat="(key,value) in list ">
 	<div class="panel-heading">
 		<header style="color: {{ value.color }};font-size: 25px;">{{ value.type + " Emergency"}}</header>
 		{{ value.time }}
@@ -60,19 +83,48 @@ $_GET['type']=0;
 			</div>
 		</div>
 	</div>
-	<div class="panel-body">
-		<a href="https://www.google.co.in/maps/@{{ value.lat }},{{ value.long }},17.33z" target="_blank">Location of Emergency</a><br>
+
+	<div class="panel-body" >
+		<a href="https://www.google.co.in/maps/@{{ value.elat }},{{ value.elong }},17.33z" target="_blank">Location of Emergency</a><br>
+			
+		<b>Victim : </b>{{ value.ename }}  | <b>Victim's Phone : </b><a href="tel:{{value.phone}}">{{value.ephone}}</a><br>
+		<br>
+
+		<div class="panel-group" id="accordion1">
+<div class="panel panel-default" ng-repeat="(k,v) in value.vehicle" data-id="{{value.eid}}">
+	<div aria-expanded="true" class="panel-heading" data-toggle="collapse" data-parent="#accordion1" >
+		<header>{{v.vtype + " #" +v.vid}}</header>		
+	</div>
+	<div  aria-expanded="true" id="accordion1-1" class="collapse in" >
+		<div class="panel-body" style="padding: 10px 16px !important" data-id="{{v.vid}}">
+			<b>{{ v.vtype }} : </b>{{ v.vehicle }} | <b>{{ v.incharge }} : </b>{{v.driver}}<br>
+			<b>Incharge Contact : </b>{{ v.vphone }}<br>
+			<a href="#" class="btn btn-raised btn-danger" onclick="dismissambulance(this)">Dismiss</a>
+		</div>
+	</div>
+</div><!--end .panel -->
+
+</div><!-- /.panel-group -->
+
+		<!-- <div class="panel panel-default" ng-repeat="(k,v) in value.vehicle">
+			<div class="panel-heading">
+				<h3>{{v.vtype}}</h3>
+			</div>
+			<div class="panel-body">
+			</div>
+		</div> -->
+		<!-- <a href="https://www.google.co.in/maps/@{{ value.lat }},{{ value.long }},17.33z" target="_blank">Location of Emergency</a><br>
 			
 		<b>Victim : </b>{{ value.name }}  | <b>Victim's Phone : </b><a href="tel:{{value.phone}}">{{value.phone}}</a><br>
 		<b>{{ value.vehtype }} : </b>{{ value.vehicle }} | <b>{{ value.incharge }} : </b>{{value.driver}}<br>
-		<b>Incharge Contact : </b>{{ value.vphone }}<br><br>
+		<b>Incharge Contact : </b>{{ value.vphone }}<br><br> -->
 		
-		<input type="text" class="form-control" id="description" placeholder="Description of Emergency" value="{{value.etype}}">
+		<input type="text" class="form-control" id="description" placeholder="Description of Emergency" value="{{value.desc}}" >
 		
 		
-		<div class="panel-footer inner-offset">
+		<div class="panel-footer inner-offset" data-id="{{value.eid}}">
 		<a href="#dismissModal" data-toggle="modal" href="#" class="btn btn-default btn-flat">Dismiss</a>
-		<a href="#acceptModal" data-toggle="modal" class="btn btn-primary btn-flat">Accept</a>
+		<a href="#acceptModal" data-toggle="modal" class="btn btn-primary btn-flat" onclick="setaccept(this)">Accept</a>
 	</div>
 	</div>
 	
@@ -89,19 +141,19 @@ $_GET['type']=0;
 		</div>
 
 		<!-- Modal -->
-		<div id="acceptModal" class="modal fade" style="display: none;">
+		<div id="acceptModal" class="modal fade" style="display: none;" ng-app="notification" ng-controller="accept" >
 	<div class="modal-dialog" style="transform: scale(0.173333); opacity: 0; top: 340px; left: 439.562px;">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h4 class="modal-title">Do you want to dispatch the emergency vehicle?</h4>
+				<h4 class="modal-title">Do you want to dispatch the emergency vehicle? </h4>
 			</div>
 			<div class="modal-body">
 				<p>Select dispatch if you are sure about the emergency. You are going to be one of the reason for a person being alive.</p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-primary btn-flat btn-ripple materialRipple-light materialRipple-btn" data-dismiss="modal">Disagree<div class="materialRipple-md-ripple-container"><div id="materialRipple-1481876427880" class="md-ripple md-ripple-placed md-ripple-scaled" style="top: 17.3047px; left: 57.0625px; width: 120.094px; height: 120.094px; opacity: 0;"></div></div></button>
-				<button type="button" class="btn btn-primary btn-flat btn-ripple materialRipple-light materialRipple-btn">Agree<div class="materialRipple-md-ripple-container"></div></button>
+				<button type="button" class="btn btn-primary btn-flat btn-ripple materialRipple-light materialRipple-btn" onclick="acceptambulance()">Agree<div class="materialRipple-md-ripple-container"></div></button>
 			</div>
 		</div>
 	</div>

@@ -30,7 +30,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="index.html">
+								<a href="./">
 									<span class="menu-item-ico"><i class="material-icons">dashboard</i></span>
 									<span class="menu-item-name">Dashboard</span>
 								</a>
@@ -93,16 +93,7 @@
 									<li><a href="notifications.php?type=3">Notifications</a></li>
 								</ul>
 							</li>
-							<li class="nav-main-heading">
-								<span class="sidebar-mini-hide">User Profile and Settings</span>
-							</li>
-							<li>
-								<a href="">
-									<span class="menu-item-ico"><i class="material-icons">lightbulb_outline</i></span>
-									<span class="menu-item-name">Help/FAQ</span>
-									
-								</a>
-							</li>
+							
 							
 					</nav><!-- END: nav#sidebar -->	
 				</div>
@@ -118,10 +109,10 @@
 								</li>
 							</ul>
 
-							<div id="searchbox">
+							<!-- <div id="searchbox">
 								<span class="search-icon"><i class="material-icons">search</i></span>
 								<input id="search-input" placeholder="Search" type="text" />
-							</div>
+							</div> -->
 
 							<ul class="toolbar toolbar-right">
 								<li>

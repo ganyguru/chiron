@@ -1,46 +1,184 @@
-var sock = null;
-var wsuri = "ws://4e16c88d.ngrok.io/admin/notif";
+ var sock = null;
+ var wsuri = "ws://4e16c88d.ngrok.io/admin/notification";
 var emergency_count=0;
-// window.onload = function() {
-// console.log("onload");
+var allNotif={};
+ window.onload = function() {
+            sock = new WebSocket(wsuri);
 
-//             sock = new WebSocket(wsuri);
+            sock.onopen = function() {
+                console.log("connected to gany kutty" + wsuri);
+                 var msg = {Id:2};
+                sock.send(JSON.stringify(msg));
+            }
 
-//             sock.onopen = function() {
-//                 console.log("connected to " + wsuri);
-//             }
+            sock.onclose = function(e) {
+                console.log("connection closed (" + e.code + ")");
+            }
 
-//             sock.onclose = function(e) {
-//                 console.log("connection closed (" + e.code + ")");
-//             }
+            sock.onmessage = function(e) {
+              typeName=['Medical','Police','Fire'];
+              ids=[];
+              descs=[];
+              descs[0]=["Serious Injuries","Cardiac arrests","Stroke","Respiratory","Diabetics","Maternal/Neonatal/Pediatric","Epilepsy","Unconsciousness","Animal bites", "High Fever", "Infections", "Others"];
+              descs[1]=["Robbery/Theft/Burglary","Street Fights","Property Conflicts","Self-inflicted injuries/Attempted suicides","Theft","Fighting","Public Nuisance","Missing","Kidnappings", "Traffic Problems", "Forceful actions, riots etc", "Others"];
+              descs[2]=["Burns","Fire breakouts","Industrial fire hazards", "Others"];
+              
+              colors=['red','#0F486D','#F97210'];
+               var data=JSON.parse(e.data);
+               var k=0;
+               var m=0;
+               var j=0;
+               for(i=0;i<data.length;i++)
+               {
+                if(getParameter==0 || getParameter==data[i].Type)
+                {
+                if(i==0)
+                {
+                  ids[m]=parseInt(data[i].Eid,10);
+                  m++;
+                  allNotif[i]={};
+                  allNotif[i].eid=data[i].Eid;
 
-//             sock.onmessage = function(e) {
+                  allNotif[i].elat=data[i].ELat;
+                  allNotif[i].elong=data[i].ELong;
+                  allNotif[i].ephone=data[i].Phone_1;
+                  allNotif[i].ename=data[i].Name_1;
+                  allNotif[i].etime=data[i].Time;
+                  allNotif[i].status=data[i].Status;
+                  allNotif[i].etype=data[i].Type;
+                  allNotif[i].type=typeName[parseInt(data[i].Type,10)-1];
+                  allNotif[i].color=colors[parseInt(data[i].Type)-1];
+                  if(data[i].Description!=-1)
+                  allNotif[i].desc=descs[parseInt(data[i].Type,10)-1][parseInt(data[i].Description,10)];
+                  else
+                  allNotif[i].desc="";
+                  allNotif[i].vehicle={};
+                  allNotif[i].vehicle[k]={};
+                   allNotif[i].vehicle[k].vtype="Station";
+                  if(allNotif[i].etype=='1')
+                    allNotif[i].vehicle[k].vtype="Ambulance";
 
-//                 var json = JSON.parse(e.data);
-//                 for(i=0;i<json.length;i++)
-//                 {
-//                 	placeEmergencyMarkers(emermap,parseFloat(json[i].Lat),parseFloat(json[i].Long));
-//                 }
+                  allNotif[i].vehicle[k].vehicle=data[i].Name_2;
+                  if(allNotif[i].etype=='1')
+                    allNotif[i].vehicle[k].vehicle=data[i].Vehicle_no;
 
-//                 var appElement = document.querySelector('[ng-controller=emergency]');
-//     			var $scope = angular.element(appElement).scope();
-//     			$scope.$apply(function() {
-//         		$scope.tcount = i;
-//     				});
+                  allNotif[i].vehicle[k].incharge="Person Incharge";
+                  if(allNotif[i].etype=='1')
+                    allNotif[i].vehicle[k].incharge="Driver";
 
-//                 $(".maplayerw").fadeOut();
-//                 //console.log("hi");
+                  allNotif[i].vehicle[k].vname=data[i].Name_2;
+                  allNotif[i].vehicle[k].vphone=data[i].Phone_2;
+                  allNotif[i].vehicle[k].vlat=data[i].VLat;
+                  allNotif[i].vehicle[k].vlong=data[i].VLong;
+                  allNotif[i].vehicle[k].driver=data[i].Driver;
+                  allNotif[i].vehicle[k].vno=data[i].Vehicle_no;
+                  allNotif[i].vehicle[k].vid=data[i].Vehicle_id;
+                  ++k;
+                  j=i;
+                }
+                else if (allNotif[j].eid==data[i].Eid)
+                {
+                  allNotif[j].vehicle[k]={};
+                  allNotif[j].vehicle[k].vtype="Station";
+                  if(allNotif[j].etype=='1')
+                    allNotif[j].vehicle[k].vtype="Ambulance";
 
-//             }
-//         };
+                  allNotif[j].vehicle[k].vehicle=data[i].Name_2;
+                  if(allNotif[j].etype=='1')
+                    allNotif[j].vehicle[k].vehicle=data[i].Vehicle_no;
 
-//         function send() {
-//             var msg = document.getElementById('message').value;
-//             sock.send(msg);
-//         };
+                   allNotif[j].vehicle[k].incharge="Person Incharge";
+                  if(allNotif[j].etype=='1')
+                    allNotif[j].vehicle[k].incharge="Driver";
+
+                  allNotif[j].vehicle[k].vname=data[i].Name_2;
+                  allNotif[j].vehicle[k].vphone=data[i].Phone_2;
+                  allNotif[j].vehicle[k].vlat=data[i].VLat;
+                  allNotif[j].vehicle[k].vlong=data[i].VLong;
+                  allNotif[j].vehicle[k].driver=data[i].Driver;
+                  allNotif[j].vehicle[k].vno=data[i].Vehicle_no;
+                  allNotif[j].vehicle[k].vid=data[i].Vehicle_id;
+                  ++k;
+                }
+                else if(allNotif[j].eid!=data[i].Eid)
+                {
+                  k=0;
+                  ids[m]=parseInt(data[i].Eid,10);
+                  m++;
+                  allNotif[i]={};
+                  allNotif[i].eid=data[i].Eid;
+                  allNotif[i].elat=data[i].ELat;
+                  allNotif[i].elong=data[i].ELong;
+                  allNotif[i].ephone=data[i].Phone_1;
+                  allNotif[i].ename=data[i].Name_1;
+                  allNotif[i].etime=data[i].Time;
+                  allNotif[i].status=data[i].Status;
+                  allNotif[i].etype=data[i].Type;
+                  allNotif[i].type=typeName[parseInt(data[i].Type,10)-1];
+                  allNotif[i].color=colors[parseInt(data[i].Type)-1];
+                  if(data[i].Description!=-1)
+                  allNotif[i].desc=descs[parseInt(data[i].Type,10)-1][parseInt(data[i].Description,10)];
+                  else
+                  allNotif[i].desc="";
+
+                  allNotif[i].vehicle={};
+                  allNotif[i].vehicle[k]={};
+                   allNotif[i].vehicle[k].vtype="Station";
+                  if(allNotif[i].etype=='1')
+                    allNotif[i].vehicle[k].vtype="Ambulance";
+
+                   allNotif[i].vehicle[k].incharge="Person Incharge";
+                  if(allNotif[i].etype=='1')
+                    allNotif[i].vehicle[k].incharge="Driver";
+
+                  allNotif[i].vehicle[k].vehicle=data[i].Name_2;
+                  if(allNotif[i].etype=='1')
+                    allNotif[i].vehicle[k].vehicle=data[i].Vehicle_no;
+
+
+                  allNotif[i].vehicle[k].vname=data[i].Name_2;
+                  allNotif[i].vehicle[k].vphone=data[i].Phone_2;
+                  allNotif[i].vehicle[k].vlat=data[i].VLat;
+                  allNotif[i].vehicle[k].vlong=data[i].VLong;
+                  allNotif[i].vehicle[k].driver=data[i].Driver;
+                  allNotif[i].vehicle[k].vno=data[i].Vehicle_no;
+                  allNotif[i].vehicle[k].vid=data[i].Vehicle_id;
+                  ++k;
+                  j=i;
+                }
+              }
+               }
+
+            var appElement = document.querySelector('[ng-controller=alerts]');
+            var $scope = angular.element(appElement).scope();
+            $scope.$apply(function() {
+                    $scope.list = allNotif;
+            });
+
+            var postdata={"Id":ids};
+            $.post("http://4e16c88d.ngrok.io/admin/seen", JSON.stringify(postdata), function(result){
+               
+            });
+              console.log(allNotif);
+            }
+        };
+
+      
+           
+      
+
 
 var ga;
-var allNotif=[];
+function dismissambulance(item)
+{
+  vid=$(item).parent().data('id');
+  eid=$(item).parent().parent().parent().data('id');
+  var data={"Vehicle_Id":vid,"Emergency_Id":eid};
+  $.post("http://4e16c88d.ngrok.io/admin/dismiss", JSON.stringify(data), function(result){
+        $(item).parent().parent().parent().hide();
+        console.log(result);
+    });
+}
 
 var app = angular.module("notification", []);
 
@@ -119,75 +257,83 @@ app.controller("alerts", function($scope,$http) {
   typeName=['Medical','Police','Fire'];
   colors=['red','#0F486D','#F97210'];
   $scope.list = {};
-  if(getParameter==0)
-  $http.get("http://localhost/108/pAPIs/notification.php")
-    .then(function(response) {
-      json=response.data;
-        //var json=JSON.parse(response);
-        //console.log(ga[0].lat);
-         for(i=0;i<json.length;i++)
-        {
-          $scope.list[i]={};
-          $scope.list[i]["lat"]=json[i].lat;
-          $scope.list[i]["long"]=json[i].long;
-          $scope.list[i]["color"]=colors[parseInt(json[i].type)-1];
-          $scope.list[i]["type"]=typeName[parseInt(json[i].type)-1];
-          $scope.list[i]["name"]=json[i].name;
-          $scope.list[i]["phone"]=json[i].phone;
-          $scope.list[i]["vehicle"]=json[i].vehicle_no;
-          $scope.list[i]["driver"]=json[i].driver;
-          $scope.list[i]["time"]=json[i].time;
-          $scope.list[i]["vphone"]=json[i].vphone;
-          $scope.list[i]["etype"]="Kitchen";
-          if(json[i].type!='1')
-          {
-            $scope.list[i].incharge="Person Incharge";
-            $scope.list[i].vehtype="Station Name";
-          }
-          else
-          {
-            $scope.list[i].incharge="Vehicle Driver";
-            $scope.list[i].vehtype="Vehicle Number";
-          }
-        }
-    });
-  else
-  {
-    $http.get("http://localhost/108/pAPIs/notification.php?type="+getParameter)
-    .then(function(response) {
 
-      json=response.data;
-        //var json=JSON.parse(response);
-        //console.log(ga[0].lat);
+  // websocketService.start("ws://4e16c88d.ngrok.io/admin/notification", function (evt) {
+  //       data={Id:2};
+  //       websocket.send(JSON.stringify)
+  //       var obj = JSON.parse(evt.data);
+  //       console.log(obj);
+  //   });
 
-         for(i=0;i<json.length;i++)
-        {
+  // if(getParameter==0)
+  // $http.get("http://localhost/108/pAPIs/notification.php")
+  //   .then(function(response) {
+  //     json=response.data;
+  //       //var json=JSON.parse(response);
+  //       //console.log(ga[0].lat);
+  //        for(i=0;i<json.length;i++)
+  //       {
+  //         $scope.list[i]={};
+  //         $scope.list[i]["lat"]=json[i].lat;
+  //         $scope.list[i]["long"]=json[i].long;
+  //         $scope.list[i]["color"]=colors[parseInt(json[i].type)-1];
+  //         $scope.list[i]["type"]=typeName[parseInt(json[i].type)-1];
+  //         $scope.list[i]["name"]=json[i].name;
+  //         $scope.list[i]["phone"]=json[i].phone;
+  //         $scope.list[i]["vehicle"]=json[i].vehicle_no;
+  //         $scope.list[i]["driver"]=json[i].driver;
+  //         $scope.list[i]["time"]=json[i].time;
+  //         $scope.list[i]["vphone"]=json[i].vphone;
+  //         $scope.list[i]["etype"]="Kitchen";
+  //         if(json[i].type!='1')
+  //         {
+  //           $scope.list[i].incharge="Person Incharge";
+  //           $scope.list[i].vehtype="Station Name";
+  //         }
+  //         else
+  //         {
+  //           $scope.list[i].incharge="Vehicle Driver";
+  //           $scope.list[i].vehtype="Vehicle Number";
+  //         }
+  //       }
+  //   });
+  // else
+  // {
+  //   $http.get("http://localhost/108/pAPIs/notification.php?type="+getParameter)
+  //   .then(function(response) {
+
+  //     json=response.data;
+  //       //var json=JSON.parse(response);
+  //       //console.log(ga[0].lat);
+
+  //        for(i=0;i<json.length;i++)
+  //       {
           
-          $scope.list[i]={};
-          $scope.list[i]["lat"]=json[i].lat;
-          $scope.list[i]["long"]=json[i].long;
-          $scope.list[i]["color"]=colors[parseInt(json[i].type)-1];
-          $scope.list[i]["type"]=typeName[parseInt(json[i].type)-1];
-          $scope.list[i]["name"]=json[i].name;
-          $scope.list[i]["phone"]=json[i].phone;
-          $scope.list[i]["vehicle"]=json[i].vehicle_no;
-          $scope.list[i]["driver"]=json[i].driver;
-          $scope.list[i]["time"]=json[i].time;
-          $scope.list[i]["etype"]="Kitchen";
-          if(json[i].type!='1')
-          {
-            $scope.list[i].incharge="Person Incharge";
-            $scope.list[i].vehtype="Station Name";
-          }
-          else
-          {
-            $scope.list[i].incharge="Vehicle Driver";
-            $scope.list[i].vehtype="Vehicle Number";
-          }
-        }
+  //         $scope.list[i]={};
+  //         $scope.list[i]["lat"]=json[i].lat;
+  //         $scope.list[i]["long"]=json[i].long;
+  //         $scope.list[i]["color"]=colors[parseInt(json[i].type)-1];
+  //         $scope.list[i]["type"]=typeName[parseInt(json[i].type)-1];
+  //         $scope.list[i]["name"]=json[i].name;
+  //         $scope.list[i]["phone"]=json[i].phone;
+  //         $scope.list[i]["vehicle"]=json[i].vehicle_no;
+  //         $scope.list[i]["driver"]=json[i].driver;
+  //         $scope.list[i]["time"]=json[i].time;
+  //         $scope.list[i]["etype"]="Kitchen";
+  //         if(json[i].type!='1')
+  //         {
+  //           $scope.list[i].incharge="Person Incharge";
+  //           $scope.list[i].vehtype="Station Name";
+  //         }
+  //         else
+  //         {
+  //           $scope.list[i].incharge="Vehicle Driver";
+  //           $scope.list[i].vehtype="Vehicle Number";
+  //         }
+  //       }
         
-    });
-  }
+  //   });
+  // }
 
   
   
@@ -205,7 +351,50 @@ app.controller("alerts", function($scope,$http) {
 
 });
 
+app.factory('websocketService', function () {
+        return {
+            start: function (url, callback) {
+                var websocket = new WebSocket(url);
+                websocket.onopen = function () {
+                };
+                websocket.onclose = function () {
+                };
+                websocket.onmessage = function (evt) {
+                    callback(evt);
+                };
+            }
+        }
+    }
+);
+var emerid;
+var emerdesc;
+var pinged;
+function setaccept(item)
+{
+  // var appElement = document.querySelector('[ng-controller=accept]');
+  //        var $scope = angular.element(appElement).scope();
+  //        $scope.$apply(function() {
+  //          $scope.eid = eid;
+  //          });
+  emerid=$(item).parent().data('id');
+  pinged=item;
+  emerdesc=$($(item).parent().parent().children('input[type="text"]')[0]).val();
+  
+}
 
+function acceptambulance()
+{
+  var data={"Dispatched":true,"Emergency_Id":parseInt(emerid,10),"User_Id":1,"Updated_Description":emerdesc};
+  $.post("http://4e16c88d.ngrok.io/admin/status", JSON.stringify(data), function(result){
+        $(pinged).parent().parent().parent().hide();
+         $('#acceptModal').modal('toggle');
+    });
+}
+
+app.controller("accept", function($scope,$http,cNotification) {
+  $scope.eid="";
+  $scope.uid="1";
+});
 app.controller("user", function($scope,$http,cNotification) {
 	 // $http.get("welcome.htm")
   //   .then(function(response) {

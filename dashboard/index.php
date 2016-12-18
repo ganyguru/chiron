@@ -132,7 +132,7 @@
 									<div class="panel-heading">
 										<header>
 											Emergency Statistics
-											<span class="label label-primary pull-right">1024 users online</span>
+											
 										</header>
 
 										
@@ -144,22 +144,17 @@
 													<div class="row">
 														<div class="col-lg-12">
 															<div class="stat-wrapper">
-																<h4 class="no-margin-top margin-bottom-2">Total Emergencies: <span class="pull-right">18,547</span></h4>
+																<h4 class="no-margin-top margin-bottom-2">Total Emergencies: <span class="pull-right">{{ tcount }}</span></h4>
 																<div class="linear-progress-demo " data-toggle="linear-progress" data-mode="determinate" data-type="primary" data-value="30"></div>
 															</div>
 														</div>
 														<div class="col-lg-12">
 															<div class="stat-wrapper margin-vertical-4">
-																<h4 class="no-margin-top margin-bottom-2">Present Emergencies: <span class="pull-right">{{ tcount }}</span></h4>
+																<h4 class="no-margin-top margin-bottom-2">Present Emergencies: <span class="pull-right">{{ present }}</span></h4>
 																<div class="linear-progress-demo " data-toggle="linear-progress" data-mode="indeterminate" data-type="primary" data-value="57"></div>
 															</div>
 														</div>
-														<div class="col-lg-12">
-															<div class="stat-wrapper">
-																<h4 class="no-margin-top margin-bottom-2">Complete Purchase: <span class="pull-right">1,501/2,000</span></h4>
-																<div class="linear-progress-demo " data-toggle="linear-progress" data-mode="determinate" data-type="primary" data-value="75"></div>
-															</div>
-														</div>
+														
 													</div>
 												</div>
 												<div class="col-lg-8">
@@ -191,36 +186,7 @@
 													</div>
 												</div>
 											</div>
-											<div class="row">
-												<div class="col-lg-3 col-sm-6">
-													<div class="micro-stats layout layout-row layout-align-center margin-top-3">
-														<div class="micro-chart-1" data-toggle="simple-pie-chart" data-percent="52" data-type="danger" data-size="45" data-line-width="3"></div>
-														<div class="micro-stats_title flex padding-horizontal-2">Server Load</div>
-														<div class="micro-stats_icons"><span class="label label-danger"><i class="material-icons">trending_up</i></span></div>
-													</div>
-												</div>
-												<div class="col-lg-3 col-sm-6">
-													<div class="micro-stats layout layout-row layout-align-center margin-top-3">
-														<div class="micro-chart-1" data-toggle="simple-pie-chart" data-percent="87" data-type="warning" data-size="45" data-line-width="3"></div>
-														<div class="micro-stats_title flex padding-horizontal-2">Disk Space</div>
-														<div class="micro-stats_icons"><span class="label label-warning"><i class="material-icons">report_problem</i></span></div>
-													</div>
-												</div>
-												<div class="col-lg-3 col-sm-6">
-													<div class="micro-stats layout layout-row layout-align-center margin-top-3">
-														<div class="micro-chart-1" data-toggle="simple-pie-chart" data-percent="25" data-type="success" data-size="45" data-line-width="3"></div>
-														<div class="micro-stats_title flex padding-horizontal-2">Bandwidth</div>
-														<div class="micro-stats_icons"><span class="label label-success"><i class="material-icons">trending_down</i></span></div>
-													</div>
-												</div>
-												<div class="col-lg-3 col-sm-6">
-													<div class="micro-stats layout layout-row layout-align-center margin-top-3">
-														<div class="micro-chart-1" data-toggle="simple-pie-chart" data-percent="57" data-type="primary" data-size="45" data-line-width="3"></div>
-														<div class="micro-stats_title flex padding-horizontal-2">Traffic</div>
-														<div class="micro-stats_icons"><span class="label label-primary"><i class="material-icons">trending_up</i></span></div>
-													</div>
-												</div>												
-											</div>
+											
 										</div>
 									</div>
 								</div>
@@ -228,226 +194,9 @@
 						</div>
 
 
-						<div class="row">
-							<div class="col-lg-3 col-sm-6">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<header>Orders</header>
+						
 
-										<div class="panel-heading-tools">
-											<div class="btn-group">
-												<a class="btn btn-icon-toggle panel-tools-menu dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<ul class="dropdown-menu dropdown-menu-right">
-													<li><a href="#">Refresh</a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<div class="panel-body no-top-padding">
-										<div class="layout layout-align-center-vertical">
-											<div class="bemat-pie-chart" data-toggle="simple-pie-chart" data-percent="14" data-type="primary"></div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-sm-6">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<header>New Messages</header>
-
-										<div class="panel-heading-tools">
-											<div class="btn-group">
-												<a class="btn btn-icon-toggle panel-tools-menu dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<ul class="dropdown-menu dropdown-menu-right">
-													<li><a href="#">Refresh</a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<div class="panel-body no-top-padding">
-										<div class="layout layout-align-center-vertical">
-											<div class="bemat-pie-chart" data-toggle="simple-pie-chart" data-percent="73" data-type="success"></div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-sm-6">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<header>New Users</header>
-
-										<div class="panel-heading-tools">
-											<div class="btn-group">
-												<a class="btn btn-icon-toggle panel-tools-menu dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<ul class="dropdown-menu dropdown-menu-right">
-													<li><a href="#">Refresh</a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<div class="panel-body no-top-padding">
-										<div class="layout layout-align-center-vertical">
-											<div class="bemat-pie-chart" data-toggle="simple-pie-chart" data-percent="41" data-type="info"></div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-sm-6">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<header>Live Update</header>
-
-										<div class="panel-heading-tools">
-											<div class="btn-group">
-												<a class="btn btn-icon-toggle panel-tools-menu dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<ul class="dropdown-menu dropdown-menu-right">
-													<li><a href="#">Refresh</a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<div class="panel-body no-top-padding">
-										<div class="layout layout-align-center-vertical">
-											<div class="bemat-pie-chart-live-update" data-toggle="simple-pie-chart" data-percent="37" data-type="primary"></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-lg-6">
-								<div class="panel panel-default panel-divider">
-									<div class="panel-heading">
-										<header>Your Task List</header>
-
-										<div class="panel-heading-tools">
-											<div class="btn-group">
-												<a class="btn btn-icon-toggle panel-tools-menu dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<ul class="dropdown-menu dropdown-menu-right">
-													<li><a href="#">Refresh</a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<div class="panel-body no-padding">
-										<div class="tasks-list" data-toggle="subheader" data-class="height-5">
-											<section>
-												<div class="list-subheader" data-mode="sticky">To Do Tasks</div>
-												<ul class="list">
-													<li class="list-item list-1-line">
-														<div class="list-icon">
-															<input class="checkbox checkbox-primary" type="checkbox" />
-														</div>
-														<div class="list-item-text layout-column">
-															<h3>Release Bemat Admin v1</h3>
-														</div>
-														<button type="button" class="secondary-container btn btn-default btn-icon-toggle" data-toggle="tooltip" data-placement="left" title="Delete Task"><i class="material-icons">delete</i></button>
-													</li>
-													<li class="list-item list-1-line">
-														<div class="list-icon">
-															<input class="checkbox checkbox-primary" type="checkbox" />
-														</div>
-														<div class="list-item-text layout-column">
-															<h3>Confirm Updates with David</h3>
-														</div>
-														<button type="button" class="secondary-container btn btn-default btn-icon-toggle" data-toggle="tooltip" data-placement="left" title="Delete Task"><i class="material-icons">delete</i></button>
-													</li>
-													<li class="list-item list-1-line">
-														<div class="list-icon">
-															<input class="checkbox checkbox-primary" type="checkbox" />
-														</div>
-														<div class="list-item-text layout-column">
-															<h3>Make daily backup</h3>
-														</div>
-														<button type="button" class="secondary-container btn btn-default btn-icon-toggle" data-toggle="tooltip" data-placement="left" title="Delete Task"><i class="material-icons">delete</i></button>
-													</li>
-													<li class="list-item list-1-line">
-														<div class="list-icon">
-															<input class="checkbox checkbox-primary" type="checkbox" />
-														</div>
-														<div class="list-item-text layout-column">
-															<h3>Buy bread and butter</h3>
-														</div>
-														<button type="button" class="secondary-container btn btn-default btn-icon-toggle" data-toggle="tooltip" data-placement="left" title="Delete Task"><i class="material-icons">delete</i></button>
-													</li>
-												</ul>
-											</section>	
-											<section>
-												<div class="list-subheader" data-mode="sticky">Completed Tasks</div>
-												<ul class="list">
-													<li class="list-item list-1-line">
-														<div class="list-icon">
-															<input class="checkbox checkbox-primary" type="checkbox" />
-														</div>
-														<div class="list-item-text layout-column">
-															<h3>Release Bemat Admin v1</h3>
-														</div>
-														<button type="button" class="secondary-container btn btn-default btn-icon-toggle" data-toggle="tooltip" data-placement="left" title="Archive Task"><i class="material-icons">archive</i></button>
-													</li>
-													<li class="list-item list-1-line">
-														<div class="list-icon">
-															<input class="checkbox checkbox-primary" type="checkbox" />
-														</div>
-														<div class="list-item-text layout-column">
-															<h3>Confirm Updates with David</h3>
-														</div>
-														<button type="button" class="secondary-container btn btn-default btn-icon-toggle" data-toggle="tooltip" data-placement="left" title="Archive Task"><i class="material-icons">archive</i></button>
-													</li>
-													<li class="list-item list-1-line">
-														<div class="list-icon">
-															<input class="checkbox checkbox-primary" type="checkbox" />
-														</div>
-														<div class="list-item-text layout-column">
-															<h3>Make daily backup</h3>
-														</div>
-														<button type="button" class="secondary-container btn btn-default btn-icon-toggle" data-toggle="tooltip" data-placement="left" title="Archive Task"><i class="material-icons">archive</i></button>
-													</li>
-													<li class="list-item list-1-line">
-														<div class="list-icon">
-															<input class="checkbox checkbox-primary" type="checkbox" />
-														</div>
-														<div class="list-item-text layout-column">
-															<h3>Buy bread and butter</h3>
-														</div>
-														<button type="button" class="secondary-container btn btn-default btn-icon-toggle" data-toggle="tooltip" data-placement="left" title="Archive Task"><i class="material-icons">archive</i></button>
-													</li>
-													<li class="list-item list-1-line">
-														<div class="list-icon">
-															<input class="checkbox checkbox-primary" type="checkbox" />
-														</div>
-														<div class="list-item-text layout-column">
-															<h3>Buy bread and butter</h3>
-														</div>
-														<button type="button" class="secondary-container btn btn-default btn-icon-toggle" data-toggle="tooltip" data-placement="left" title="Archive Task"><i class="material-icons">archive</i></button>
-													</li>
-												</ul>
-											</section>	
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-lg-6">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<header>Statistics</header>
-
-										<div class="panel-heading-tools">
-											<div class="btn-group">
-												<a class="btn btn-icon-toggle panel-tools-menu dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<ul class="dropdown-menu dropdown-menu-right">
-													<li><a href="#">Refresh</a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<div class="panel-body height-5 no-padding">
-										<div class="ct-chart"></div>
-									</div>
-								</div>
-							</div>
-						</div>
+					
 
 
 					</section><!-- /#page-content -->

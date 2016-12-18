@@ -51,7 +51,7 @@ $_GET['type']=0;
 								<div class="panel panel-default">
 									<div class="panel-body">
 									<div class="maplayerw" >
-									<p style="text-align: center;">Loading Ambulances...</p>
+									<p style="text-align: center;">{{loading}}</p>
 									<img class="imgfade" src="img/plus-l.png">
 									</div>
 									<div id="map" style="width:100%;height:300px;"></div>

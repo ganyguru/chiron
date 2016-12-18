@@ -54,38 +54,51 @@ $_GET['type']=0;
 								<div class="panel panel-default">
 									<div class="panel-body">
 										
-											<form class="form" role="form">
+											<form >
 												<input type="hidden" class="form-control" id="type" value="{{type}}">
-												<div class="form-group floating-label">
-												<input type="text" class="form-control" id="vno">
-												<label for="regular2">Name</label>
-												</div>
-
-												<div class="form-group floating-label">
-												<input type="text" class="form-control" id="driver">
-												<label for="regular2">Phone</label>
-												</div>
-
-												<div class="form-group floating-label">
-												<input type="text" class="form-control" id="phone">
-												<label for="regular2">Address</label>
-												</div>
-
-												<div class="form-group floating-label">
-												<input type="text" class="form-control" id="phone">
-												<label for="regular2">Type</label>
-												</div>
-
-												<div class="form-group floating-label">
-												<input type="text" class="form-control" id="phone">
-												<label for="regular2">Injury Type</label>
-												</div>
-
+												<div class="form-group ">
+												<input type="text" class="form-control" id="name" placeholder="Name">
 												
+												</div>
+
+												<div class="form-group ">
+												<input type="text" class="form-control" id="phone" placeholder="Phone">
+												
+												</div>
+
+												<div class="form-group ">
+												<textarea name="address" id="address" class="form-control" rows="3" placeholder="Address"></textarea>
+												
+												</div>
+
+
+												<div >
+													<select id="cate" name="cate"  onchange="getDesc(this)">
+														<option value="">Emergency Type</option>
+														<option value="1">Medical</option>
+														<option value="2">Police</option>
+														<option value="3">Fire</option>
+													</select>
+													
+												</div>
+
+												<div  >
+													<select id="desc" name="desc"  style="display: block !important;">
+														
+													</select>
+													
+												</div>
+
+												<div class="form-group ">
+														<input type="text" class="form-control" id="injured" placeholder="injured">
+														
+												</div>
+
+
 
 												<br>
 												
-												<center><p><button type="button" class="btn btn-flat btn-primary">Add Vehicle</button></p></center>
+												<center><p><button type="button" class="btn btn-flat btn-primary" onclick="place()">Place Emergency</button></p></center>
 
 
 											</form>
@@ -106,6 +119,21 @@ $_GET['type']=0;
 		</div>
 
 		<!-- Modal -->
+		<script type="text/javascript">
+			function geocodeAddress() {
+				var geocoder = new google.maps.Geocoder();
+        var address = "nanganallur";
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === 'OK') {
+            console.log(results[0].geometry.location);
+            
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+      }
+		</script>
+		
 		
 		<!-- Core Scripts - Include with every page -->
 		<script src="js/jquery-1.10.2.js" type="text/javascript"></script>
@@ -129,7 +157,7 @@ $_GET['type']=0;
 		<script src="vendor/chartist/chartist.min.js" type="text/javascript"></script>
 		<script src="vendor/summernote/summernote.min.js" type="text/javascript"></script>
 		<script src="vendor/ckeditor/ckeditor.js" type="text/javascript"></script>
-		<script src="vendor/wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+		
 
 		<!-- Cerocreativo Plugins -->
 		<script src="vendor/materialRipple/jquery.materialRipple.js" type="text/javascript"></script>
@@ -147,5 +175,10 @@ $_GET['type']=0;
 <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-72024640-1', 'auto');ga('send', 'pageview');</script> 
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 		<script type="text/javascript" src="js/place.js"></script>
+		<script type="text/javascript">
+			$("#name").focus();
+			$(".bootstrap-select").hide();
+			$("select").removeClass("bs-select-hidden");
+		</script>
 	</body>
 </html>

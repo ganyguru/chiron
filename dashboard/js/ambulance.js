@@ -48,11 +48,16 @@ app.controller("records", function($scope,$http) {
 	$scope.list = [];
   $scope.h1="Station Name";
   $scope.h2="Person Incharge";
+  $scope.loading="Loading Fire Stations...";
   if(getParameter==1)
   {
     $scope.h1="Vehicle No.";
   $scope.h2="Vehicle Driver";
+  $scope.loading="Loading Ambulances...";
   }
+  else
+  if(getParameter==2)
+    $scope.loading="Loading Police Stations...";
   if(getParameter!=0)
   {
   $http.get("http://localhost/108/pAPIs/ambulances.php?type="+getParameter)
@@ -67,7 +72,10 @@ app.controller("records", function($scope,$http) {
           $scope.list[i]={};
           $scope.list[i].id=json[i].id;          
           $scope.list[i]["driver"]=json[i].driver;
+          if(json[i].type=='1')            
           $scope.list[i]["vehicle_no"]=json[i].vehicle_no;
+          else
+          $scope.list[i]["vehicle_no"]=json[i].district;
           $scope.list[i]["phone"]=json[i].phone;
           $scope.list[i]["lat"]=json[i].lat;
           $scope.list[i]["long"]=json[i].long;

@@ -60,8 +60,8 @@ $_SESSION['auth_token']='asd';
         <form class="col 12 m12 l8 offset-l2" action="login.php" method="post" id="regform">
           <div class="row">
             <div class="input-field col s12">
-              <input id="email" type="email" name="email" class="validate" placeholder="Please use the same email everywhere" required>
-              <label for="email">Email
+              <input id="email" type="text" name="email" class="validate" required>
+              <label for="email">Username
               </label>
             </div>
           </div>

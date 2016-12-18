@@ -1,7 +1,8 @@
 var sock = null;
-var wsuri = "ws://4e16c88d.ngrok.io/admin/notification";
+var sock2 = null;
+var wsuri = "ws://4e16c88d.ngrok.io/admin/emergency";
 var emergency_count=0;
-
+var totalcount=0;
 window.onload = function() {
 console.log("onload");
 
@@ -16,24 +17,46 @@ console.log("onload");
             }
 
             sock.onmessage = function(e) {
+            	var present=0;
+                console.log(JSON.parse(e.data));
+                json=JSON.parse(e.data);
 
-                console.log(e.data);
-       //          for(i=0;i<json.length;i++)
-       //          {
-       //          	placeEmergencyMarkers(emermap,parseFloat(json[i].Lat),parseFloat(json[i].Long));
-       //          }
+                //totalcount=e.data.length;
+                for(i=0;i<json.length;i++)
+                {
+                	if(json[i].Status==true)
+                	{
+                	placeEmergencyMarkers(emermap,parseFloat(json[i].Lat),parseFloat(json[i].Long));
+                	
+                		present++;
+                	}
+                }
+                         $(".maplayerw").fadeOut();
+                var appElement = document.querySelector('[ng-controller=emergency]');
+    			var $scope = angular.element(appElement).scope();
+    			$scope.$apply(function() {
+        		$scope.tcount = JSON.parse(e.data).length;
+        		$scope.present = present;
+    				});
 
-       //          var appElement = document.querySelector('[ng-controller=emergency]');
-    			// var $scope = angular.element(appElement).scope();
-    			// $scope.$apply(function() {
-       //  		$scope.tcount = i;
-    			// 	});
-
-       //          $(".maplayerw").fadeOut();
+       
        //          //console.log("hi");
 
             }
+
+
+
+            sock2=new WebSocket("ws://4e16c88d.ngrok.io/admin/emergencycount");
+            sock2.onmessage = function(e) {
+            	//var res=JSON.parse(e.data);
+            	var count=JSON.parse(e.data).Id;
+            	notifyMe(count);
+            	
+            }
+
         };
+
+
 
         function send() {
             var msg = document.getElementById('message').value;
@@ -44,7 +67,8 @@ console.log("onload");
 
 var app = angular.module("dashboard", []);
 app.controller("emergency", function($scope) {
-	$scope.tcount = "N/A";
+	$scope.tcount = totalcount;
+	$scope.present = 0;
    //$scope.. = 'Raghavendran';
    $scope.getDetails = function() {
         $scope.tcount = "N/A";

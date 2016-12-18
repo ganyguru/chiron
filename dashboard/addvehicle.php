@@ -71,7 +71,7 @@ $_GET['type']=0;
 												<label for="regular2">Phone Number</label>
 												</div><br>
 												
-												<center><p><button type="button" class="btn btn-flat btn-primary">Add Vehicle</button></p></center>
+												<center><p><button type="button" class="btn btn-flat btn-primary" onclick="addvehicle()">Add Vehicle</button></p></center>
 
 
 											</form>
@@ -133,5 +133,15 @@ $_GET['type']=0;
 <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-72024640-1', 'auto');ga('send', 'pageview');</script> 
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 		<script type="text/javascript" src="js/addamb.js"></script>
+		<script type="text/javascript">
+			function addvehicle()
+{
+  var data={"Vehicle_no":$("#vno").val(),"Driver":$("#driver").val(),"Phone":$("#phone").val()}
+  $.post('http://4e16c88d.ngrok.io/admin/addvehicle',JSON.stringify(data),function(result)
+  {
+    alert('Vehicle Added! Id:'+result);
+  });
+}
+		</script>
 	</body>
 </html>
